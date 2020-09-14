@@ -1,5 +1,4 @@
-<!doctype html>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
@@ -18,6 +17,9 @@
 </head>
 
 <body>
+	<!-- Connect to database -->
+	<?php include ("db_connect.php"); ?>
+	
 	<!-- Header -->
 	<?php include ("inc_header.html"); ?>
 	
@@ -27,56 +29,44 @@
 		<h1>Let's Play Trivia!</h1>
 		<h2>Select your game.</h2>
 		
-		<!-- Game cards -->
 		<section class="container">
-			<div class="row">
-				<div class="col-md-4" >
-					<div class="card mb-4 shadow-sm">
-						<img src="" class="card-img-top" alt="">
-							<div class="card-body">
-								<h5 class="card-title">The game's title</h5>
-								<p class="card-text text-muted">The games' description</p>
-								<form action="/game.php" method="GET">
-									<input type="hidden" name="">
-									<input type="submit" value="">
-								</form>
-								<a href="game.php" class="btn btn-primary">Play</a>
-							</div>
-					</div>
-				</div>
-
-				<div class="col-md-4" >
-					<div class="card mb-4 shadow-sm">
-						<img src="" class="card-img-top" alt="">
-							<div class="card-body">
-								<h5 class="card-title">The game's title</h5>
-								<p class="card-text text-muted">The games' description</p>
-								<a href="game.php" class="btn btn-primary">Play</a>
-							</div>
-					</div>
-				</div>
-				
-				<div class="col-md-4" >
-					<div class="card mb-4 shadow-sm">
-						<img src="" class="card-img-top" alt="">
-							<div class="card-body">
-								<h5 class="card-title ">The game's title</h5>
-								<p class="card-text text-muted">The games' description</p>
-								<a href="game.php" class="btn btn-primary">Play</a>
-							</div>
-					</div>
-				</div>
-
+			<div class="row">	
+				<!-- Populate Game Cards. -->
+				<?php
+				if ($mysqli -> connect_errno) {
+					echo "Failed to connect to Database" . $mysqli -> connect_error;
+					exit();
+				}
+				if ($result = $mysqli -> query("SELECT * FROM games")) {
+					$counter = 1;
+					while ($row = $result -> fetch_assoc()) {
+						echo '<div class="col-md-4" >';
+							echo '<div class="card mb-4 shadow-sm">';
+								echo '<img src="" class="card-img-top" alt="">';
+								echo '<div class="card-body">';
+									echo '<h5 class="card-title">' . $row["title"] . '</h5>';
+									echo '<p class="card-text text-muted">' . $row["description"]. '</p>';
+									echo '<button type="submit" id="' . $row["id"]. '">Play</button>';
+								echo '</div>';
+							echo '</div>';
+						echo '</div>';
+						if ($counter%3 == 0) { echo '<br>';	}
+						++$counter;
+					}
+				}
+				$mysqli->close();
+				?>
 			</div>
-
 		</section>
-		
 	</main>
 	
 	<!-- Footer -->
 	<?php include ("inc_footer.html"); ?>
 
 	<!-- Optional JavaScript -->
+
+	<script src="index.js"></script>
+
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -88,7 +78,5 @@
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
 	</script>
 </body>
-
-</html>
 
 </html>
