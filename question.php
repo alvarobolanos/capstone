@@ -1,5 +1,4 @@
-<!doctype html>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
@@ -18,9 +17,11 @@
 </head>
 
 <body>
+	<!-- Connect to database -->
+	<?php include ("db_connect.php"); ?>
 	<!-- Header -->
 	<?php include ("inc_header.html"); ?>
-	
+
 	<!-- Jumbotron -->
 	<div class="jumbotron text-center">
 		<h1>Game Name</h1>
@@ -28,12 +29,23 @@
 
 	<!-- Main -->
 	<main class="container">
-
-		<!-- Questions Pane -->
-		<section>
-			<h2>Question #</h2>
-			<span class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus, consequatur? A consequatur quas ipsum non labore explicabo, esse alias facilis doloribus dolorem laborum ipsa soluta fugiat corrupti sunt reprehenderit fugit?</span>
-		</section>
+	<!-- Questions Pane -->
+	<?php
+		if ($mysqli -> connect_errno) {
+			echo "Failed to connect to Database" . $mysqli -> connect_error;
+			exit();
+		}
+		if ($result = $mysqli -> query("SELECT * FROM questions WHERE game_id=1")) {
+			$counter = 1;
+			while($row = $result -> fetch_assoc()) {
+				echo '<section>';
+					echo '<h2>Question' . $counter . '</h2>';
+					echo '<span class="text-muted">' . $row["question_text"]. '</span>';
+				echo '</section>';
+				++$counter;
+			}
+		}
+	?>
 		
 		<!-- Answers Pane -->
 		<section class="container">
@@ -98,6 +110,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
 	</script>
+	
 	<?php 
 	echo 'Get';
 	pre_r($_GET);
