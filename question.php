@@ -29,49 +29,46 @@
 
 	<!-- Main -->
 	<main class="container">
-	<!-- Questions Pane -->
-	<?php
-		if ($mysqli -> connect_errno) {
-			echo "Failed to connect to Database" . $mysqli -> connect_error;
-			exit();
-		}
-		if ($result = $mysqli -> query("SELECT * FROM questions WHERE game_id=1")) {
-			$counter = 1;
-			while($row = $result -> fetch_assoc()) {
-				echo '<section>';
-					echo '<h2>Question' . $counter . '</h2>';
-					echo '<span class="text-muted">' . $row["question_text"]. '</span>';
-				echo '</section>';
-				++$counter;
-			}
-		}
-	?>
-		
-		<!-- Answers Pane -->
+	<!-- Question and Answers Pane -->
+	
 		<section class="container">
-				<form action="" method="POST">
-					<div class="btn-group d-flex btn-group-toggle" role="group" data-toggle="buttons">
-						<label class="btn btn-lg btn-block btn-primary">
-							<input type="radio" name="options" id="option1"> Answer 1
-						</label>
-						<label class="btn btn-lg btn-block btn-primary">
-							<input type="radio" name="options" id="option2"> Answer 2
-						</label>
-						<label class="btn btn-lg btn-block btn-primary">
-							<input type="radio" name="options" id="option3"> Answer 3
-						</label>
-						<label class="btn btn-lg btn-block btn-primary">
-							<input type="radio" name="options" id="option4"> Answer 4
-						</label>
-						<input type="hidden" name="">
-						<input type="submit" value="">
-				</form>
-			</div>
-
-
+			<?php
+				if ($mysqli -> connect_errno) {
+					echo "Failed to connect to Database" . $mysqli -> connect_error;
+					exit();
+				}
+				if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id=1")) {
+					$counter = 1;
+					while($row = $result -> fetch_assoc()) {
+						echo '<section>';
+							echo '<h2>Question ' . $counter . '</h2>';
+							echo '<p class="text-muted">' . $row["question"]. '</p>';
+							echo '<form action="" method="POST">';
+								echo '<div class="btn-group btn-group-toggle " role="group" data-toggle="buttons">';
+									echo '<label class="btn btn-lg btn-outline-primary">';
+										echo '<input type="radio" name="options" id="answer_1" autocomplete="off">' . $row["answer_1"];
+									echo '</label>';
+									echo '<label class="btn btn-lg btn-outline-primary">';
+										echo '<input type="radio" name="options" id="answer_2" autocomplete="off">' . $row["answer_2"];
+									echo '</label>';
+									echo '<label class="btn btn-lg btn-outline-primary">';
+										echo '<input type="radio" name="options" id="answer_3" autocomplete="off">' . $row["answer_3"];
+									echo '</label>';
+									echo '<label class="btn btn-lg btn-outline-primary">';
+										echo '<input type="radio" name="options" id="answer_4" autocomplete="off">' . $row["answer_4"];
+									echo '</label>';
+								echo '</form>';
+							echo '</div>';
+						echo '</section>';
+						++$counter;
+					}
+				}
+			?>
+		</section>
+	
 		</section>
 
-		<!-- Name Modal -->
+		<!-- Rules Modal -->
 			<div class="modal fade" id="rulesModal" tabindex="-1" role="dialog" aria-labelledby="Rules Modal" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">

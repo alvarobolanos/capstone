@@ -44,13 +44,14 @@
 							echo '<div class="card mb-4 shadow-sm">';
 								echo '<img src="" class="card-img-top" alt="">';
 								echo '<div class="card-body">';
+									echo '<img src="' . $row["image_url"] . '" class="card-img-top">';
 									echo '<h5 class="card-title">' . $row["title"] . '</h5>';
 									echo '<p class="card-text text-muted">' . $row["description"]. '</p>';
 									echo '<button type="submit" id="' . $row["id"]. '">Play</button>';
 								echo '</div>';
 							echo '</div>';
 						echo '</div>';
-						if ($counter%3 == 0) { echo '<br>';	}
+						if ($counter%3 == 0) echo '<br>';
 						++$counter;
 					}
 				}
