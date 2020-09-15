@@ -47,13 +47,18 @@
 									echo '<img src="' . $row["image_url"] . '" class="card-img-top">';
 									echo '<h5 class="card-title">' . $row["title"] . '</h5>';
 									echo '<p class="card-text text-muted">' . $row["description"]. '</p>';
-									echo '<button type="submit" id="' . $row["id"]. '">Play</button>';
+									echo '<form action="game.php" method="POST">';
+										echo '<button class="btn btn-primary" type="submit" name="game_id" value="' . $row["id"]. '" value>Play</button>';
+									echo '</form>';
 								echo '</div>';
 							echo '</div>';
 						echo '</div>';
-						if ($counter%3 == 0) echo '<br>';
+						if ($counter%3 == 0) {
+							echo '<br>';
+						}
 						++$counter;
 					}
+					mysqli_free_result($result);
 				}
 				$mysqli->close();
 				?>
@@ -61,6 +66,8 @@
 		</section>
 	</main>
 	
+<form action="" method="post"></form>
+
 	<!-- Footer -->
 	<?php include ("inc_footer.html"); ?>
 
