@@ -18,13 +18,15 @@
 
 <body>
 	<!-- Connect to database -->
-	<?php include ("db_connect.php"); ?>
+	<?php include ("db_connect.php"); 
+	$title = $_POST["title"];
+	?>
 	<!-- Header -->
 	<?php include ("inc_header.html"); ?>
-
+	
 	<!-- Jumbotron -->
 	<div class="jumbotron text-center">
-		<h1>Game Name</h1>
+		<h1><?php echo $title ?></h1>		//TODO obtain variable from POST with isset()
 	</div>
 
 	<!-- Main -->
@@ -63,6 +65,7 @@
 						++$counter;
 					}
 				}
+			$mysqli->close();
 			?>
 		</section>
 	
