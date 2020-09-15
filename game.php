@@ -17,6 +17,14 @@
 </head>
 
 <body>
+	
+	<!-- Connect to database -->
+	<?php include ("db_connect.php"); 
+		if (isset($_POST)) {
+			$game_id = $_POST['game_id'];
+		}
+	?>
+
 	<!-- Header -->
 	<?php include ("inc_header.html"); ?>
 	
@@ -30,13 +38,21 @@
 		<div class="row">
 			<!-- Game Pane -->
 			<section class="col-md-6">
-				<h2>Game Description</h2>
-				<p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos facilis nostrum
-					sint minus aliquam assumenda harum illum! Aliquid velit ipsum voluptatem laboriosam, nisi quod et
-					aut a earum illo dolores.
-				</p>
-				<button class="btn btn-primary btn-large btn-block" data-toggle="modal"
-					data-target="#nameModal">Play</button>
+			<?php
+				if ($mysqli -> connect_errno) {
+					echo "Failed to connect to Database" . $mysqli -> connect_error;
+					exit();
+				}
+				if ($result = $mysqli -> query("SELECT * FROM games WHERE id = $game_id")) {
+					while($row = $result -> fetch_assoc()) {
+						echo '<h2>' . $row["title"] . '</h2>';
+						echo '<p class="text-muted">' . $row["description"] . '</p>';
+					}
+				}
+				mysqli_free_result($result);
+				?>
+				<button class="btn btn-primary btn-large btn-block" data-toggle="modal" data-target="#nameModal">Play</button>
+				</section>
 
 				<!-- Name Modal -->
 				<div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="Name Modal" aria-hidden="true">
@@ -67,8 +83,6 @@
 					</div>
 				</div>
 
-			</section>
-
 			<!-- Separator -->
 			<div class="col-md-1"></div>
 			
@@ -83,6 +97,22 @@
 							<th scope="col">Name</th>
 							<th scope="col">Score</th>
 						</tr>
+						<?php
+							if ($mysqli -> connect_errno) {
+								echo "Failed to connect to Database" . $mysqli -> connect_error;
+								exit();
+							}
+							if ($result = $mysqli -> query("SELECT * FROM scores WHERE game_id = $game_id")) {
+								$counter = 1;
+								while($row = $result -> fetch_assoc()) {
+									echo '<th scope="row">' . $counter . '</th>';
+									// echo '<td>' . $row["username"] . '</td>'; //TODO the schema might need some re-thinking because the username is from the players table.
+									echo '<td>' . $row["score"] . '</td>';
+								}
+							}
+							mysqli_free_result($result);
+							$mysqli->close();
+							?>
 						<tr>
 							<th scope="row">1</th>
 							<td>John S.</td>
