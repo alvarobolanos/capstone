@@ -72,3 +72,6 @@ $RECYCLE.BIN/
 
 # Avoid mwb bak files.
 .bak
+
+# Avoid Composer's vendor folder
+/vendor/
