@@ -6,22 +6,22 @@ USE `capstone`;
 DROP TABLE IF EXISTS `players`;
 CREATE TABLE IF NOT EXISTS `players` (
 	`id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	`username` VARCHAR(255) NOT NULL UNIQUE,
-	-- `email` VARCHAR(255) NOT NULL UNIQUE,
-	-- `password` VARCHAR(255) NOT NULL,
-	`created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+	`username` VARCHAR(191) NOT NULL UNIQUE,
+	-- `email` VARCHAR(191) NOT NULL UNIQUE,
+	-- `password` VARCHAR(191) NOT NULL,
+	`created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	-- `last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS `games`;
 CREATE TABLE `games` (
 	`id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	`title` VARCHAR(250) NOT NULL UNIQUE, 
+	`title` VARCHAR(191) NOT NULL UNIQUE, 
 	`description` TEXT NOT NULL,
-	`image_url` VARCHAR(2083),
-	`created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+	`image_url` VARCHAR(191),
+	`created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	-- `last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS `scores`;
 CREATE TABLE `scores` (
@@ -30,7 +30,7 @@ CREATE TABLE `scores` (
 	`created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`game_id` INT,
 	FOREIGN KEY (`game_id`) REFERENCES games(`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS `players_scores`;
 CREATE TABLE `players_scores` (
@@ -38,7 +38,7 @@ CREATE TABLE `players_scores` (
 	FOREIGN KEY (`player_id`) REFERENCES players(`id`),
 	`score_id` INT,
 	FOREIGN KEY (`score_id`) REFERENCES scores(`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 DROP TABLE IF EXISTS `qanda`;
 CREATE TABLE `qanda` (
@@ -50,10 +50,10 @@ CREATE TABLE `qanda` (
     `answer_4` TINYTEXT NOT NULL,
     `correct_answer` TINYTEXT NOT NULL,
     `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	-- `last_updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `game_id` INT,
 	FOREIGN KEY (`game_id`) REFERENCES games(`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT 
 INTO capstone.games (title, description, image_url)
