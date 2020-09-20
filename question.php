@@ -19,7 +19,9 @@
 <body>
 	<!-- Connect to database -->
 	<?php include ("db_connect.php"); 
-	$title = $_POST["title"];
+	if (isset($_POST)) {
+		$title = $_POST['title'];
+	}
 	?>
 	<!-- Header -->
 	<?php include ("inc_header.html"); ?>

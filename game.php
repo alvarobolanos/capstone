@@ -21,7 +21,7 @@
 	<!-- Connect to database -->
 	<?php include ("db_connect.php"); 
 		if (isset($_POST)) {
-			$game_id = $_POST['game_id'];
+			$id = $_POST['id'];
 		}
 	?>
 
@@ -43,8 +43,9 @@
 					echo "Failed to connect to Database" . $mysqli -> connect_error;
 					exit();
 				}
-				if ($result = $mysqli -> query("SELECT * FROM games WHERE id = $game_id")) {
+				if ($result = $mysqli -> query("SELECT * FROM games WHERE id = $id")) {
 					while($row = $result -> fetch_assoc()) {
+						$title = $row["title"];
 						echo '<h2>' . $row["title"] . '</h2>';
 						echo '<p class="text-muted">' . $row["description"] . '</p>';
 					}
@@ -72,12 +73,13 @@
 											<input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp"
 												placeholder="Enter your name">
 											<small id="nameHelp" class="form-text text-muted">We'll display it along your top score.</small>
+											<input type="hidden" name=$title>
 										</div>
 									</div>
-								</form>
-							</div>
 							<div class="modal-footer">
 								<button type="submit" class="btn btn-primary">Let's do this!</button>
+							</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -102,7 +104,7 @@
 								echo "Failed to connect to Database" . $mysqli -> connect_error;
 								exit();
 							}
-							if ($result = $mysqli -> query("SELECT * FROM scores WHERE game_id = $game_id")) {
+							if ($result = $mysqli -> query("SELECT * FROM scores WHERE game_id = $id")) {
 								$counter = 1;
 								while($row = $result -> fetch_assoc()) {
 									echo '<th scope="row">' . $counter . '</th>';

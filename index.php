@@ -48,7 +48,7 @@
 									echo '<h5 class="card-title">' . $row["title"] . '</h5>';
 									echo '<p class="card-text text-muted">' . $row["description"]. '</p>';
 									echo '<form action="game.php" method="POST">';
-										echo '<button class="btn btn-primary" type="submit" name="game_id" value="' . $row["id"]. '" value>Play</button>';
+										echo '<button class="btn btn-primary" type="submit" name="id" value="' . $row["id"]. '" value>Play</button>';
 									echo '</form>';
 								echo '</div>';
 							echo '</div>';
@@ -65,8 +65,6 @@
 			</div>
 		</section>
 	</main>
-	
-<form action="" method="post"></form>
 
 	<!-- Footer -->
 	<?php include ("inc_footer.html"); ?>
