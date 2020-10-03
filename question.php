@@ -19,16 +19,17 @@
 <body>
 	<!-- Connect to database -->
 	<?php include ("db_connect.php"); 
-	if (isset($_POST)) {
-		$title = $_POST['title'];
-	}
+		if (isset($_POST)) {
+			$id = $_POST['id'];
+			$title = $_POST['title'];
+		}
 	?>
 	<!-- Header -->
 	<?php include ("inc_header.html"); ?>
 	
 	<!-- Jumbotron -->
 	<div class="jumbotron text-center">
-		<h1><?php echo $title ?></h1>		//TODO obtain variable from POST with isset()
+		<h1><?php echo $title ?></h1>
 	</div>
 
 	<!-- Main -->
@@ -41,35 +42,51 @@
 					echo "Failed to connect to Database" . $mysqli -> connect_error;
 					exit();
 				}
-				if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id=1")) {
-					$counter = 1;
-					while($row = $result -> fetch_assoc()) {
-						echo '<section>';
-							echo '<h2>Question ' . $counter . '</h2>';
-							echo '<p class="text-muted">' . $row["question"]. '</p>';
-							echo '<form action="" method="POST">';
-								echo '<div class="btn-group btn-group-toggle " role="group" data-toggle="buttons">';
-									echo '<label class="btn btn-lg btn-outline-primary">';
-										echo '<input type="radio" name="options" id="answer_1" autocomplete="off">' . $row["answer_1"];
-									echo '</label>';
-									echo '<label class="btn btn-lg btn-outline-primary">';
-										echo '<input type="radio" name="options" id="answer_2" autocomplete="off">' . $row["answer_2"];
-									echo '</label>';
-									echo '<label class="btn btn-lg btn-outline-primary">';
-										echo '<input type="radio" name="options" id="answer_3" autocomplete="off">' . $row["answer_3"];
-									echo '</label>';
-									echo '<label class="btn btn-lg btn-outline-primary">';
-										echo '<input type="radio" name="options" id="answer_4" autocomplete="off">' . $row["answer_4"];
-									echo '</label>';
-								echo '</form>';
-							echo '</div>';
-						echo '</section>';
+				// if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
+				// 	$counter = 1;
+				// 	while($row = $result -> fetch_assoc()) { 
+				// 		echo '<section>';
+				// 			echo '<h2>Question ' . $counter . '</h2>';
+				// 			echo '<p class="text-muted">' . $row["question"]. '</p>';
+				// 			echo '<form action="" method="POST">';
+				// 				echo '<div class="btn-group btn-group-toggle " role="group" data-toggle="buttons">';
+				// 					echo '<label class="btn btn-lg btn-outline-primary">';
+				// 						echo '<input type="radio" name="options" id="answer_1" autocomplete="off">' . $row["answer_1"];
+				// 					echo '</label>';
+				// 					echo '<label class="btn btn-lg btn-outline-primary">';
+				// 						echo '<input type="radio" name="options" id="answer_2" autocomplete="off">' . $row["answer_2"];
+				// 					echo '</label>';
+				// 					echo '<label class="btn btn-lg btn-outline-primary">';
+				// 						echo '<input type="radio" name="options" id="answer_3" autocomplete="off">' . $row["answer_3"];
+				// 					echo '</label>';
+				// 					echo '<label class="btn btn-lg btn-outline-primary">';
+				// 						echo '<input type="radio" name="options" id="answer_4" autocomplete="off">' . $row["answer_4"];
+				// 					echo '</label>';
+				// 				echo '</form>';
+				// 			echo '</div>';
+				// 		echo '</section>';
+				// 		++$counter;
+				// 	}
+				// }
+
+				if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
+					$counter = 0;
+					$json_array = array();
+					while ($row = $result -> fetch_assoc()) {
+						$json_array[] = $row;
 						++$counter;
 					}
 				}
+
+			pre_r($json_array);
+			$questions = json_encode($json_array);
+			echo $questions;
 			$mysqli->close();
 			?>
-		</section>
+
+			<script>
+				var questions = <?php echo $questions; ?>
+			</script>
 	
 		</section>
 
@@ -113,12 +130,12 @@
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
 	</script>
 	
-	<?php 
+	<!-- <?php 
 	echo 'Get';
 	pre_r($_GET);
 	echo 'Post';
 	pre_r($_POST);
-	?>
+	?> -->
 </body>
 
 </html>

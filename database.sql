@@ -74,3 +74,33 @@ VALUES ('What is the largest Island in the Caribbean?', 'Puerto Rico', 'La Hispa
 SELECT * FROM qanda;
 
 SELECT question, correct_answer FROM capstone.qanda WHERE game_id=1;
+
+-- Insert values into the players table
+INSERT 
+INTO capstone.players (username)
+VALUES ('alvaro');
+-- $lastPlayerId = $mysqli-> insert_id
+
+-- Insert values into scores table
+INSERT
+INTO capstone.scores (score, game_id)
+VALUES (90.0, 1);
+-- $lastScoreId = $mysqli -> insert_id
+
+-- Insert values into players_scores table
+INSERT 
+INTO capstone.players_scores (player_id, score_id)
+VALUES (1, 1); -- use the $lastPlayerId and $lastScoreId
+
+SELECT * FROM capstone.players;
+
+SELECT * FROM scores;
+
+SELECT * FROM capstone.players_scores;
+
+-- Query scores and player name to populate the top scores table
+SELECT players.username, scores.score FROM players 
+JOIN players_scores ON players_scores.player_id = players.id
+JOIN scores ON scores.id = players_scores.score_id;
+
+-- update scores and the players_scores table

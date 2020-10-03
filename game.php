@@ -1,5 +1,4 @@
-<!doctype html>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
@@ -66,14 +65,15 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form action="question.php" method="POST">
+								<form action="question.php" method="POST" autocomplete="off">
 									<div class="container">
 										<div class="form-group">
 											<label for="username">Name</label>
-											<input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp"
+											<input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" 
 												placeholder="Enter your name">
 											<small id="nameHelp" class="form-text text-muted">We'll display it along your top score.</small>
-											<input type="hidden" name=$title>
+											<input type="hidden" name="id" value="<?php echo $id ?>">
+											<input type="hidden" name="title" value="<?php echo $title ?>">
 										</div>
 									</div>
 							<div class="modal-footer">
@@ -104,32 +104,18 @@
 								echo "Failed to connect to Database" . $mysqli -> connect_error;
 								exit();
 							}
-							if ($result = $mysqli -> query("SELECT * FROM scores WHERE game_id = $id")) {
+							if ($result = $mysqli -> query("SELECT players.username, scores.score FROM players JOIN players_scores ON players_scores.player_id = players.id JOIN scores ON scores.id = players_scores.score_id WHERE game_id = $id;")) {
 								$counter = 1;
 								while($row = $result -> fetch_assoc()) {
 									echo '<th scope="row">' . $counter . '</th>';
 									// echo '<td>' . $row["username"] . '</td>'; //TODO the schema might need some re-thinking because the username is from the players table.
+									echo '<td>' . $row["username"] . '</td>';
 									echo '<td>' . $row["score"] . '</td>';
 								}
 							}
 							mysqli_free_result($result);
 							$mysqli->close();
-							?>
-						<tr>
-							<th scope="row">1</th>
-							<td>John S.</td>
-							<td>100%</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>John S.</td>
-							<td>97%</td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>Kat</td>
-							<td>93%</td>
-						</tr>
+						?>
 					</tbody>
 					</thead>
 				</table>
@@ -152,12 +138,12 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
 	</script>
-	<?php 
+	<!-- <?php 
 	echo 'Get';
 	pre_r($_GET);
 	echo 'Post';
 	pre_r($_POST);
-	?>
+	?> -->
 </body>
 
 </html>
