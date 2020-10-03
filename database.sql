@@ -94,13 +94,14 @@ VALUES (1, 1); -- use the $lastPlayerId and $lastScoreId
 
 SELECT * FROM capstone.players;
 
-SELECT * FROM scores;
+SELECT * FROM capstone.scores;
 
 SELECT * FROM capstone.players_scores;
 
 -- Query scores and player name to populate the top scores table
 SELECT players.username, scores.score FROM players 
 JOIN players_scores ON players_scores.player_id = players.id
-JOIN scores ON scores.id = players_scores.score_id;
+JOIN scores ON scores.id = players_scores.score_id
+ORDER BY scores.score desc;
 
 -- update scores and the players_scores table
