@@ -18,7 +18,13 @@
 
 <body>
 	<!-- Connect to database -->
-	<?php include ("db_connect.php"); ?>
+	<?php include ("db_connect.php"); 
+		if (isset($_POST)) {
+			$id = $POST['id'];
+			$username = $_POST['username'];
+			$q_counter = $_POST['q_counter'];
+		}
+	?>
 	
 	<!-- Header -->
 	<?php include ("inc_header.html"); ?>
@@ -48,6 +54,21 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
 	</script>
+
+	<?php 
+	// echo 'Get';
+	// pre_r($_GET);
+	echo 'Post';
+	pre_r($_POST);
+	?>
 </body>
 
 </html>
+
+<?php
+function pre_r($array) {
+	echo '<pre>';
+	print_r($array);
+	echo '</pre>';
+}
+?>

@@ -27,7 +27,7 @@
 	<main class="container">
 
 		<h1>Let's Play Trivia!</h1>
-		<h2>Select your game.</h2>
+		<h2>Select a game.</h2>
 		
 		<section class="container">
 			<div class="row">	
@@ -40,20 +40,21 @@
 				if ($result = $mysqli -> query("SELECT * FROM games")) {
 					$counter = 1;
 					while ($row = $result -> fetch_assoc()) {
-						echo '<div class="col-md-4" >';
-							echo '<div class="card mb-4 shadow-sm">';
+						echo '<div class="col-md-6" >';
+							echo '<div class="card mb-6 shadow-sm">';
 								echo '<img src="" class="card-img-top" alt="">';
 								echo '<div class="card-body">';
 									echo '<img src="' . $row["image_url"] . '" class="card-img-top">';
 									echo '<h5 class="card-title">' . $row["title"] . '</h5>';
-									echo '<p class="card-text text-muted">' . $row["description"]. '</p>';
+									echo '<p class="card-text text-muted">' . substr($row["description"], 0, 150). '...</p>';
 									echo '<form action="game.php" method="POST">';
+										echo '<input type="hidden" name="title" value="' . $row["title"] . '">';
 										echo '<button class="btn btn-primary" type="submit" name="id" value="' . $row["id"]. '" value>Play</button>';
 									echo '</form>';
 								echo '</div>';
 							echo '</div>';
 						echo '</div>';
-						if ($counter%3 == 0) {
+						if ($counter%2 == 0) {
 							echo '<br>';
 						}
 						++$counter;

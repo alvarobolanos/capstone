@@ -21,6 +21,7 @@
 	<?php include ("db_connect.php"); 
 		if (isset($_POST)) {
 			$id = $_POST['id'];
+			$title = $_POST['title'];
 		}
 	?>
 
@@ -29,7 +30,7 @@
 	
 	<!-- Jumbotron -->
 	<div class="jumbotron text-center">
-		<h1>Game Name</h1>
+		<h1><?php echo $title; ?></h1>
 	</div>
 
 	<!-- Main -->
@@ -44,8 +45,8 @@
 				}
 				if ($result = $mysqli -> query("SELECT * FROM games WHERE id = $id")) {
 					while($row = $result -> fetch_assoc()) {
-						$title = $row["title"];
-						echo '<h2>' . $row["title"] . '</h2>';
+						// $title = $row["title"];
+						// echo '<h2>' . $row["title"] . '</h2>';
 						echo '<p class="text-muted">' . $row["description"] . '</p>';
 					}
 				}
@@ -69,7 +70,7 @@
 									<div class="container">
 										<div class="form-group">
 											<label for="username">Name</label>
-											<input type="text" class="form-control" id="username" name="username" aria-describedby="nameHelp" 
+											<input type="text" autofocus class="form-control" id="username" name="username" aria-describedby="nameHelp" 
 												placeholder="Enter your name">
 											<small id="nameHelp" class="form-text text-muted">We'll display it along your top score.</small>
 											<input type="hidden" name="id" value="<?php echo $id ?>">
@@ -104,11 +105,12 @@
 								echo "Failed to connect to Database" . $mysqli -> connect_error;
 								exit();
 							}
-							if ($result = $mysqli -> query("SELECT players.username, scores.score FROM players JOIN players_scores ON players_scores.player_id = players.id JOIN scores ON scores.id = players_scores.score_id WHERE game_id = $id;")) {
+							if ($result = $mysqli -> query("SELECT players.username, scores.score FROM players JOIN players_scores ON players_scores.player_id = players.id JOIN scores ON scores.id = players_scores.score_id WHERE game_id = $id
+									ORDER BY scores.score DESC
+									LIMIT 5;")) {
 								$counter = 1;
 								while($row = $result -> fetch_assoc()) {
 									echo '<th scope="row">' . $counter . '</th>';
-									// echo '<td>' . $row["username"] . '</td>'; //TODO the schema might need some re-thinking because the username is from the players table.
 									echo '<td>' . $row["username"] . '</td>';
 									echo '<td>' . $row["score"] . '</td>';
 								}
@@ -138,6 +140,13 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
 	</script>
+
+	<script>
+		$('#nameModal').on('shown.bs.modal', function () {
+			$('#username').trigger('focus')
+		})
+	</script>
+
 	<!-- <?php 
 	echo 'Get';
 	pre_r($_GET);

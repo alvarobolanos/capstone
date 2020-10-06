@@ -22,6 +22,7 @@
 		if (isset($_POST)) {
 			$id = $_POST['id'];
 			$title = $_POST['title'];
+			$username = $_POST['username'];
 		}
 	?>
 	<!-- Header -->
@@ -35,40 +36,48 @@
 	<!-- Main -->
 	<main class="container">
 	<!-- Question and Answers Pane -->
-	
+		<h2>Get ready <?php echo $username?>!</h2>
 		<section class="container">
 			<?php
 				if ($mysqli -> connect_errno) {
 					echo "Failed to connect to Database" . $mysqli -> connect_error;
 					exit();
+				}; ?>
+			<section>
+				<form action="summary.php" method="POST">
+				<?php
+					if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
+						$q_counter = 1;
+						while($row = $result -> fetch_assoc()) { 
+							echo '<h2>Question ' . $q_counter . '</h2>';
+							echo '<p class="text-muted">' . $row["question"]. '</p>';
+								echo '<div class="btn-group btn-group-toggle form-group" role="group" data-toggle="buttons">';
+									echo '<label class="btn btn-lg btn-outline-primary">';
+									echo '<input type="radio" name="answer_' . $q_counter . '" value="'; echo $row["answer_1"]; echo '" autocomplete="off" required>' . $row["answer_1"];
+										echo '</label>';
+									echo '<label class="btn btn-lg btn-outline-primary">';
+										echo '<input type="radio" name="answer_' . $q_counter . '" value="'; echo $row["answer_2"]; echo '" autocomplete="off">' . $row["answer_2"];
+										echo '</label>';
+									echo '<label class="btn btn-lg btn-outline-primary">';
+										echo '<input type="radio" name="answer_' . $q_counter . '" value="'; echo $row["answer_3"]; echo '" autocomplete="off">' . $row["answer_3"];
+									echo '</label>';
+									echo '<label class="btn btn-lg btn-outline-primary">';
+										echo '<input type="radio" name="answer_' . $q_counter . '" value="'; echo $row["answer_4"]; echo '" autocomplete="off">' . $row["answer_4"];
+									echo '</label>';
+							echo '</div>';
+						++$q_counter;
+					}
 				}
-				// if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
-				// 	$counter = 1;
-				// 	while($row = $result -> fetch_assoc()) { 
-				// 		echo '<section>';
-				// 			echo '<h2>Question ' . $counter . '</h2>';
-				// 			echo '<p class="text-muted">' . $row["question"]. '</p>';
-				// 			echo '<form action="" method="POST">';
-				// 				echo '<div class="btn-group btn-group-toggle " role="group" data-toggle="buttons">';
-				// 					echo '<label class="btn btn-lg btn-outline-primary">';
-				// 						echo '<input type="radio" name="options" id="answer_1" autocomplete="off">' . $row["answer_1"];
-				// 					echo '</label>';
-				// 					echo '<label class="btn btn-lg btn-outline-primary">';
-				// 						echo '<input type="radio" name="options" id="answer_2" autocomplete="off">' . $row["answer_2"];
-				// 					echo '</label>';
-				// 					echo '<label class="btn btn-lg btn-outline-primary">';
-				// 						echo '<input type="radio" name="options" id="answer_3" autocomplete="off">' . $row["answer_3"];
-				// 					echo '</label>';
-				// 					echo '<label class="btn btn-lg btn-outline-primary">';
-				// 						echo '<input type="radio" name="options" id="answer_4" autocomplete="off">' . $row["answer_4"];
-				// 					echo '</label>';
-				// 				echo '</form>';
-				// 			echo '</div>';
-				// 		echo '</section>';
-				// 		++$counter;
-				// 	}
-				// }
+				?>
+					<input type="hidden" name="id" value="<?php echo $id ?>">
+					<input type="hidden" name="username" value="<?php echo $username ?>">
+					<input type="hidden" name="q_counter" value="<?php echo ($q_counter-1) ?>">
+					</br>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
 
+			</section>
+			<?php
 				if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
 					$counter = 0;
 					$json_array = array();
@@ -78,16 +87,26 @@
 					}
 				}
 
-			pre_r($json_array);
+			// pre_r($json_array);
 			$questions = json_encode($json_array);
-			echo $questions;
+			// echo $questions;
 			$mysqli->close();
 			?>
-
+			
 			<script>
-				var questions = <?php echo $questions; ?>
+				var questions = <?php echo $questions; ?>;
+				var i = 0;
+				while (i < questions.length) {
+					console.log(questions[i].question);
+					console.log(questions[i].answer_1);
+					console.log(questions[i].answer_2);
+					console.log(questions[i].answer_3);
+					console.log(questions[i].answer_4);
+					++i;
+				}
+
 			</script>
-	
+
 		</section>
 
 		<!-- Rules Modal -->
