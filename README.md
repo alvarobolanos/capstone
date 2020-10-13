@@ -2,17 +2,21 @@
 
 ## Creating the heroku instance
 
-
+In progress...
 
 ## Composer
+In progress...
 
 ### composer.json
+In progress...
 
 ### composer.lock
+In progress...
 
 # Database
 
 ## Adding a database to the heroku instance.
+In progress...
 
 ## Logging into the DB
 
@@ -29,7 +33,7 @@ mysql://username:password1:@host/password2?reconnect=true
 
 ## Importing an SQL file into the DB
 
-Prepare an export of the database. Since I'm using mysqlWorkbench: Server ➡ Data Export. 
+Prepare an export of the database. Since I'm using mysqlWorkbench: Server → Data Export. 
 
 Be mindful that the database preparation may vary depending on whether you've already created the capstone database or not. If you indicate mysqlWorkbench to create the schema you may need to edit the file to configure the collation and charset settings
 
