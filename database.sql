@@ -102,6 +102,7 @@ SELECT * FROM capstone.players_scores;
 SELECT players.username, scores.score FROM players 
 JOIN players_scores ON players_scores.player_id = players.id
 JOIN scores ON scores.id = players_scores.score_id
-ORDER BY scores.score desc;
+ORDER BY scores.score desc
+LIMIT 5;
 
 -- update scores and the players_scores table

@@ -39,7 +39,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,'World Geography','A trivia game about world geography in which you will test your knowledge about places, bodies of water and other interesting facts that everyone should know. If you do not know these, then you should have stayed in school kido.','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/OrteliusWorldMap.jpeg/2560px-OrteliusWorldMap.jpeg','2020-09-17 21:19:19');
+INSERT INTO `games` VALUES (1,'World Geography','A trivia game about world geography in which you will test your knowledge about places, bodies of water and other interesting facts that everyone should know. If you do not know these, then you should have stayed in school kido.','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/OrteliusWorldMap.jpeg/2560px-OrteliusWorldMap.jpeg','2020-10-05 23:31:22');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +56,7 @@ CREATE TABLE `players` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +65,7 @@ CREATE TABLE `players` (
 
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
+INSERT INTO `players` VALUES (1,'alvaro','2020-10-05 23:31:22');
 /*!40000 ALTER TABLE `players` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,6 +92,7 @@ CREATE TABLE `players_scores` (
 
 LOCK TABLES `players_scores` WRITE;
 /*!40000 ALTER TABLE `players_scores` DISABLE KEYS */;
+INSERT INTO `players_scores` VALUES (1,1);
 /*!40000 ALTER TABLE `players_scores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +125,7 @@ CREATE TABLE `qanda` (
 
 LOCK TABLES `qanda` WRITE;
 /*!40000 ALTER TABLE `qanda` DISABLE KEYS */;
-INSERT INTO `qanda` VALUES (1,'What is the largest Island in the Caribbean?','Puerto Rico','La Hispaniola','Cuba','Dominica','Cuba','2020-09-17 21:19:19',1),(2,'Where is the tallest waterfall located?','Venezuela','USA','Congo','Denmark','Denmark','2020-09-17 21:19:19',1),(3,'What is the tallest peak in Europe?','Mt. Elbrus','Mt. Blanc','Mt. Olympus','Mt. Edna','Mt. Elbrus','2020-09-17 21:19:19',1),(4,'In what country could you find Tungurahua volcano?','Costa Rica','Ecuador','Mexico','Chile','Ecuador','2020-09-17 21:19:19',1),(5,'What is the biggest metropolitan area (by population) in the USA?','Boston-Cambridge-Newton','Dallas-Fort Worth','Miami-Ft. Lauderdale-West Palm Beach','New York-Newark-Jersey City','New York-Newark-Jersey City','2020-09-17 21:19:19',1),(6,'What country has the highest bird diversity?','USA','India','Colombia','Indonesia','Colombia','2020-09-17 21:19:19',1),(7,'What is the country with the largest forest area?','Russian Federation','Brazil','Canada','China','Russian Federation','2020-09-17 21:19:19',1);
+INSERT INTO `qanda` VALUES (1,'What is the largest Island in the Caribbean?','Puerto Rico','La Hispaniola','Cuba','Dominica','Cuba','2020-10-05 23:31:22',1),(2,'Where is the tallest waterfall located?','Venezuela','USA','Congo','Denmark','Denmark','2020-10-05 23:31:22',1),(3,'What is the tallest peak in Europe?','Mt. Elbrus','Mt. Blanc','Mt. Olympus','Mt. Edna','Mt. Elbrus','2020-10-05 23:31:22',1),(4,'In what country could you find Tungurahua volcano?','Costa Rica','Ecuador','Mexico','Chile','Ecuador','2020-10-05 23:31:22',1),(5,'What is the biggest metropolitan area (by population) in the USA?','Boston-Cambridge-Newton','Dallas-Fort Worth','Miami-Ft. Lauderdale-West Palm Beach','New York-Newark-Jersey City','New York-Newark-Jersey City','2020-10-05 23:31:22',1),(6,'What country has the highest bird diversity?','USA','India','Colombia','Indonesia','Colombia','2020-10-05 23:31:22',1),(7,'What is the country with the largest forest area?','Russian Federation','Brazil','Canada','China','Russian Federation','2020-10-05 23:31:22',1);
 /*!40000 ALTER TABLE `qanda` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +144,7 @@ CREATE TABLE `scores` (
   PRIMARY KEY (`id`),
   KEY `game_id` (`game_id`),
   CONSTRAINT `scores_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,6 +153,7 @@ CREATE TABLE `scores` (
 
 LOCK TABLES `scores` WRITE;
 /*!40000 ALTER TABLE `scores` DISABLE KEYS */;
+INSERT INTO `scores` VALUES (1,90,'2020-10-05 23:31:22',1);
 /*!40000 ALTER TABLE `scores` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -163,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-17 17:19:33
+-- Dump completed on 2020-10-12 20:29:48
