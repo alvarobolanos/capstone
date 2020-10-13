@@ -23,6 +23,10 @@
 			$id = $POST['id'];
 			$username = $_POST['username'];
 			$q_counter = $_POST['q_counter'];
+			for ($i=0; $i < $q_counter; $i++) {			TODO: //maybe it's easier to bring an array from the question page...
+				$answer_[$i] = $_POST['answer_' . [$i-1]];
+				echo $answer_[$i];
+			}
 		}
 	?>
 	
@@ -33,7 +37,41 @@
 	<main class="container">
 
 		<section class="container">
+		<?php
+				if ($mysqli -> connect_errno) {
+					echo "Failed to connect to Database" . $mysqli -> connect_error;
+					exit();
+				}
+				if ($result = $mysqli -> query("SELECT question, correct_answer FROM capstone.qanda WHERE game_id=1")) {
+					while($row = $result -> fetch_assoc()) {
+						$answers_array[] = $row;
+					}
+				}
+				mysqli_free_result($result);
+				pre_r($answers_array);
+				$score = 0;
+				for ($i = 0; $i< $q_counter; $i++) {
+					if ($answers_array[$i] == $answers_[$i]) {
+						$score++;
+					}
+				}
+				echo 'Score: ' . $score;
+
+				$correct_answers = json_encode($answers_array);
+				echo $correct_answers;
+				$mysqli->close();
+				?>
 		
+		<script>		// Here's a similar approach to last's page to compare using javascript as a last resort.
+			var correct_answers = <?php echo $correct_answers; ?>;
+
+			while (i < correct_answers.length) {
+					console.log(correct_answers[i].question);
+					console.log(correct_answers[i].correct_answer);
+					++i;
+				}
+
+		</script>
 		</section>
 	</main>
 

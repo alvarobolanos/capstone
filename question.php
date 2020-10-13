@@ -42,7 +42,8 @@
 				if ($mysqli -> connect_errno) {
 					echo "Failed to connect to Database" . $mysqli -> connect_error;
 					exit();
-				}; ?>
+				}; 
+			?>
 			<section>
 				<form action="summary.php" method="POST">
 				<?php
@@ -66,8 +67,8 @@
 									echo '</label>';
 							echo '</div>';
 						++$q_counter;
+						}
 					}
-				}
 				?>
 					<input type="hidden" name="id" value="<?php echo $id ?>">
 					<input type="hidden" name="username" value="<?php echo $username ?>">
