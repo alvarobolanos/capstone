@@ -20,13 +20,9 @@
 	<!-- Connect to database -->
 	<?php include ("db_connect.php"); 
 		if (isset($_POST)) {
-			$id = $POST['id'];
+			$id = $_POST['id'];
 			$username = $_POST['username'];
 			$q_counter = $_POST['q_counter'];
-			for ($i=0; $i < $q_counter; $i++) {			TODO: //maybe it's easier to bring an array from the question page...
-				$answer_[$i] = $_POST['answer_' . [$i-1]];
-				echo $answer_[$i];
-			}
 		}
 	?>
 	
@@ -38,30 +34,41 @@
 
 		<section class="container">
 		<?php
-				if ($mysqli -> connect_errno) {
-					echo "Failed to connect to Database" . $mysqli -> connect_error;
-					exit();
+			// Extracting the correct answers
+			if ($mysqli -> connect_errno) {
+				echo "Failed to connect to Database" . $mysqli -> connect_error;
+				exit();
+			}
+			if ($result = $mysqli -> query("SELECT correct_answer FROM capstone.qanda WHERE game_id=1")) {
+				while($row = $result -> fetch_assoc()) {
+					$answers_array[] = $row;
 				}
-				if ($result = $mysqli -> query("SELECT question, correct_answer FROM capstone.qanda WHERE game_id=1")) {
-					while($row = $result -> fetch_assoc()) {
-						$answers_array[] = $row;
-					}
-				}
-				mysqli_free_result($result);
-				pre_r($answers_array);
-				$score = 0;
-				for ($i = 0; $i< $q_counter; $i++) {
-					if ($answers_array[$i] == $answers_[$i]) {
-						$score++;
-					}
-				}
-				echo 'Score: ' . $score;
+			}
+			mysqli_free_result($result);
+			$mysqli->close();
+			
+			// pre_r($answers_array);
+			// $correct_answers = json_encode($answers_array);
+			// echo $correct_answers;
+			
+			// Scoring System
 
-				$correct_answers = json_encode($answers_array);
-				echo $correct_answers;
-				$mysqli->close();
-				?>
-		
+			$score = 0;
+			for ($i = 0; $i < $q_counter; $i++) {
+				// echo $answers_array[$i]['correct_answer'];
+				// echo $_POST['answer_' . $i];
+				if ($answers_array[$i]['correct_answer'] == $_POST['answer_' . ($i+1)]) {
+					$score++;
+				}
+			}
+
+			$final_score = (($score * 100)/$q_counter);
+			echo 'You correctly answered ' . $score . ' out of ' . $q_counter . '. ';
+			echo "Here's your score " . $username . ": ";
+			printf("%.2f", $final_score);
+			echo '%'
+		?>
+
 		<script>		// Here's a similar approach to last's page to compare using javascript as a last resort.
 			var correct_answers = <?php echo $correct_answers; ?>;
 
@@ -72,6 +79,7 @@
 				}
 
 		</script>
+
 		</section>
 	</main>
 
@@ -96,8 +104,8 @@
 	<?php 
 	// echo 'Get';
 	// pre_r($_GET);
-	echo 'Post';
-	pre_r($_POST);
+	// echo 'Post';
+	// pre_r($_POST);
 	?>
 </body>
 
