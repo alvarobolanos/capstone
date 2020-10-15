@@ -41,7 +41,7 @@ Use this command to login to your heroku account:
 `heroku login -i`
 
 Make sure that you've stagged everything, then commit and leave a message:
-`git commit -ma "commit message"`
+`git commit -a`
 
 Now push the project to heroku:
 `git push heroku`
