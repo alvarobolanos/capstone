@@ -1,8 +1,27 @@
 # Heroku
 
+## Heroku Basics
+
+Follow this [heroku link](https://devcenter.heroku.com/articles/heroku-cli) to obtain the heroku command line tool. 
+
+Use this command to login to your heroku account:
+`heroku login -i`
+
 ## Creating the heroku instance
 
-In progress...
+Navigate to your project's location:
+`$ cd ~/capstone`
+
+Then create a new heroku instance:
+`$ heroku create`
+
+You should get something like this:
+`Creating app... done, ⬢ sleepy-meadow-81798`
+`https://sleepy-meadow-81798.herokuapp.com/ | https://git.heroku.com/sleepy-meadow-81798.git`
+
+The first url: `https://sleepy-meadow-81798.herokuapp.com/` is where you can visit your project.
+
+The second url: `https://git.heroku.com/sleepy-meadow-81798.git` is a remote that gets added to your git and where you can push for the project to be published. 
 
 ## Composer
 In progress...
@@ -12,6 +31,20 @@ In progress...
 
 ### composer.lock
 In progress...
+
+## Pushing to heroku
+
+Navigate to your project's location:
+`$ cd ~/capstone`
+
+Use this command to login to your heroku account:
+`heroku login -i`
+
+Make sure that you've stagged everything, then commit and leave a message:
+`git commit -ma "commit message"`
+
+Now push the project to heroku:
+`git push heroku`
 
 # Database
 
