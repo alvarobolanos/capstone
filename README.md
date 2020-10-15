@@ -43,7 +43,9 @@ Use this command to login to your heroku account:
 Make sure that you've stagged everything, then commit and leave a message:
 `git commit -a`
 
-Now push the project to heroku:
+Git will present you with a vim screen asking you to input a commit message. Press "i" to enter Insert mode and enter your commit message. Once done, press "ESC" and then `wq` to write and quit the vim program.
+
+Now you can push the project to heroku:
 `git push heroku`
 
 # Database
