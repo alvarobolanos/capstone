@@ -47,23 +47,23 @@
 			mysqli_free_result($result);
 			$mysqli->close();
 			
-			pre_r($answers_array);
+			// pre_r($answers_array);
 			// $correct_answers = json_encode($answers_array);
 			// echo $correct_answers;
 			
 			// Scoring System
 
 			$score = 0;
-			for ($i = 0; $i < $q_counter; $i++) {
+			for ($i = 0; $i <= $q_counter; $i++) {
 				// echo $answers_array[$i]['correct_answer'];
 				// echo $_POST['answer_' . $i];
-				if ($answers_array[$i]['correct_answer'] == $_POST['answer_' . ($i+1)]) {
+				if ($answers_array[$i]['correct_answer'] == $_POST['answer_' . ($i)]) {
 					$score++;
 				}
 			}
 
-			$final_score = (($score * 100)/$q_counter);
-			echo 'You correctly answered ' . $score . ' out of ' . $q_counter . '. ';
+			$final_score = (($score * 100)/($q_counter+1));
+			echo 'You correctly answered ' . ($score) . ' out of ' . ($q_counter+1) . '. ';
 			echo "Here's your score " . $username . ": ";
 			printf("%.2f", $final_score);
 			echo '%'

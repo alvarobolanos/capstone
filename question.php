@@ -48,23 +48,23 @@
 				<form action="summary.php" method="POST">
 				<?php
 					if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
-						$q_counter = 1;
+						$q_counter = 0;
 						while($row = $result -> fetch_assoc()) { 
-							echo '<div id="q_' . $q_counter .'">';
-								echo '<h2>Question ' . $q_counter . '</h2>';
+							echo '<div id="q_' . ($q_counter+1) .'">';
+								echo '<h2>Question ' . ($q_counter+1) . '</h2>';
 								echo '<p class="text-muted">' . $row["question"]. '</p>';
 									echo '<div class="btn-group btn-group-toggle form-group" role="group" data-toggle="buttons">';
 										echo '<label class="btn btn-lg btn-outline-primary">';
-										echo '<input type="radio" name="answer_' . $q_counter . '" value="'; echo $row["answer_1"]; echo '" autocomplete="off" required>' . $row["answer_1"];
+										echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_1"]; echo '" autocomplete="off" required>' . $row["answer_1"];
 											echo '</label>';
 										echo '<label class="btn btn-lg btn-outline-primary">';
-											echo '<input type="radio" name="answer_' . $q_counter . '" value="'; echo $row["answer_2"]; echo '" autocomplete="off">' . $row["answer_2"];
+											echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_2"]; echo '" autocomplete="off">' . $row["answer_2"];
 											echo '</label>';
 										echo '<label class="btn btn-lg btn-outline-primary">';
-											echo '<input type="radio" name="answer_' . $q_counter . '" value="'; echo $row["answer_3"]; echo '" autocomplete="off">' . $row["answer_3"];
+											echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_3"]; echo '" autocomplete="off">' . $row["answer_3"];
 										echo '</label>';
 										echo '<label class="btn btn-lg btn-outline-primary">';
-											echo '<input type="radio" name="answer_' . $q_counter . '" value="'; echo $row["answer_4"]; echo '" autocomplete="off">' . $row["answer_4"];
+											echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_4"]; echo '" autocomplete="off">' . $row["answer_4"];
 										echo '</label>';
 								echo '</div>';
 							echo '</div>';
