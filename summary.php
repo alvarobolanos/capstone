@@ -47,7 +47,7 @@
 			mysqli_free_result($result);
 			$mysqli->close();
 			
-			// pre_r($answers_array);
+			pre_r($answers_array);
 			// $correct_answers = json_encode($answers_array);
 			// echo $correct_answers;
 			
@@ -56,7 +56,7 @@
 			$score = 0;
 			for ($i = 0; $i < $q_counter; $i++) {
 				// echo $answers_array[$i]['correct_answer'];
-				echo $_POST['answer_' . $i];
+				// echo $_POST['answer_' . $i];
 				if ($answers_array[$i]['correct_answer'] == $_POST['answer_' . ($i+1)]) {
 					$score++;
 				}
