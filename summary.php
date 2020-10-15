@@ -55,8 +55,8 @@
 
 			$score = 0;
 			for ($i = 0; $i < $q_counter; $i++) {
-				// echo $answers_array[$i]['correct_answer'];
-				// echo $_POST['answer_' . $i];
+				echo $answers_array[$i]['correct_answer'];
+				echo $_POST['answer_' . $i];
 				if ($answers_array[$i]['correct_answer'] == $_POST['answer_' . ($i+1)]) {
 					$score++;
 				}
@@ -69,26 +69,11 @@
 			echo '%'
 		?>
 
-		<script>		// Here's a similar approach to last's page to compare using javascript as a last resort.
-			var correct_answers = <?php echo $correct_answers; ?>;
-
-			while (i < correct_answers.length) {
-					console.log(correct_answers[i].question);
-					console.log(correct_answers[i].correct_answer);
-					++i;
-				}
-
-		</script>
-
 		</section>
 	</main>
 
 	<!-- Footer -->
 	<?php include ("inc_footer.html"); ?>
-
-	<!-- Optional JavaScript -->
-
-	<script src="index.js"></script>
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
