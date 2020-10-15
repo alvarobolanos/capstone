@@ -39,7 +39,7 @@
 				echo "Failed to connect to Database" . $mysqli -> connect_error;
 				exit();
 			}
-			if ($result = $mysqli -> query("SELECT correct_answer FROM capstone.qanda WHERE game_id=1")) {
+			if ($result = $mysqli -> query("SELECT correct_answer FROM capstone.qanda WHERE game_id = $id")) {
 				while($row = $result -> fetch_assoc()) {
 					$answers_array[] = $row;
 				}
@@ -89,8 +89,8 @@
 	<?php 
 	// echo 'Get';
 	// pre_r($_GET);
-	echo 'Post';
-	pre_r($_POST);
+	// echo 'Post';
+	// pre_r($_POST);
 	?>
 </body>
 
