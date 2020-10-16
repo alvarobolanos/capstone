@@ -45,8 +45,6 @@
 				}
 				if ($result = $mysqli -> query("SELECT * FROM games WHERE id = $id")) {
 					while($row = $result -> fetch_assoc()) {
-						// $title = $row["title"];
-						// echo '<h2>' . $row["title"] . '</h2>';
 						echo '<p class="text-muted">' . $row["description"] . '</p>';
 					}
 				}

@@ -21,6 +21,7 @@
 	<?php include ("db_connect.php"); 
 		if (isset($_POST)) {
 			$id = $_POST['id'];
+			$title = $_POST['title'];
 			$username = $_POST['username'];
 			$q_counter = $_POST['q_counter'];
 		}
@@ -29,10 +30,16 @@
 	<!-- Header -->
 	<?php include ("inc_header.html"); ?>
 	
+	<!-- Jumbotron -->
+	<div class="jumbotron text-center">
+		<h1><?php echo $title; ?></h1>
+	</div>
+
 	<!-- Main -->
 	<main class="container">
 
 		<section class="container">
+
 		<?php
 			// Extracting the correct answers
 			if ($mysqli -> connect_errno) {
@@ -44,30 +51,49 @@
 					$answers_array[] = $row;
 				}
 			}
+			
 			mysqli_free_result($result);
 			$mysqli->close();
 			
+			// Printing the answers_array
 			// pre_r($answers_array);
+
+			// Encoding the answers_array to json
 			// $correct_answers = json_encode($answers_array);
-			// echo $correct_answers;
 			
 			// Scoring System
 
 			$score = 0;
 			for ($i = 0; $i <= $q_counter; $i++) {
-				// echo $answers_array[$i]['correct_answer'];
-				// echo $_POST['answer_' . $i];
 				if ($answers_array[$i]['correct_answer'] == $_POST['answer_' . ($i)]) {
 					$score++;
 				}
 			}
 
+			// Calculating the score as a percentage.
 			$final_score = (($score * 100)/($q_counter+1));
-			echo 'You correctly answered ' . ($score) . ' out of ' . ($q_counter+1) . '. ';
-			echo "Here's your score " . $username . ": ";
-			printf("%.2f", $final_score);
-			echo '%'
+			// echo 'You correctly answered ' . ($score) . ' out of ' . ($q_counter+1) . '. ';
+			// echo "Here's your score " . $username . ": ";
+			// printf("%.2f", $final_score);
+			// echo '%'
 		?>
+		
+		<div class="container text-center">
+			<h1><?php printf("%.2f", $final_score) ?> %</h1>
+	
+			<h4 class="text-muted">You scored <?php echo $score ?> correct answers out of <?php echo ($q_counter+1) ?>.</h4>
+			<p>Thank you for playing <?php echo $username ?>.</p>
+	
+			<form action="game.php" method="post">
+				<input type="hidden" name="id" value="<?php echo $id ?>">
+				<input type="hidden" name="title" value="<?php echo $title ?>">
+				<input type="hidden" name="username" value="<?php echo $username ?>">
+				<input type="hidden" name="score" value="<?php echo $score ?>">
+				<button type="submit" class="btn btn-primary btn-lg">Check the Top Scores</button>
+			</form>
+		</div>
+
+
 
 		</section>
 	</main>
