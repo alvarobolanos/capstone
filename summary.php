@@ -39,13 +39,12 @@
 				echo "Failed to connect to Database" . $mysqli -> connect_error;
 				exit();
 			}
-			if ($result = $mysqli -> query("SELECT correct_answer FROM capstone.qanda WHERE game_id = $id")) {
+			if ($result = $mysqli -> query("SELECT correct_answer FROM qanda WHERE game_id = $id")) {
 				while($row = $result -> fetch_assoc()) {
 					$answers_array[] = $row;
-					echo 'yep';
 				}
 			}
-			// mysqli_free_result($result);
+			mysqli_free_result($result);
 			$mysqli->close();
 			
 			// pre_r($answers_array);
