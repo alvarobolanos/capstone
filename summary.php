@@ -44,7 +44,7 @@
 					$answers_array[] = $row;
 				}
 			}
-			mysqli_free_result($result);
+			// mysqli_free_result($result);
 			$mysqli->close();
 			
 			// pre_r($answers_array);
