@@ -42,6 +42,7 @@
 			if ($result = $mysqli -> query("SELECT correct_answer FROM capstone.qanda WHERE game_id = $id")) {
 				while($row = $result -> fetch_assoc()) {
 					$answers_array[] = $row;
+					echo 'yep';
 				}
 			}
 			// mysqli_free_result($result);
