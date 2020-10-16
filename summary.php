@@ -55,7 +55,7 @@
 
 			$score = 0;
 			for ($i = 0; $i <= $q_counter; $i++) {
-				// echo $answers_array[$i]['correct_answer'];
+				echo $answers_array[$i]['correct_answer'];
 				// echo $_POST['answer_' . $i];
 				if ($answers_array[$i]['correct_answer'] == $_POST['answer_' . ($i)]) {
 					$score++;
