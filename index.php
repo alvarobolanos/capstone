@@ -40,7 +40,7 @@
 				if ($result = $mysqli -> query("SELECT * FROM games")) {
 					$counter = 1;
 					while ($row = $result -> fetch_assoc()) {
-						echo '<div class="col-md-6" >';
+						echo '<div class="col-md-6">';
 							echo '<div class="card mb-6 shadow-sm">';
 								echo '<img src="" class="card-img-top" alt="">';
 								echo '<div class="card-body">';

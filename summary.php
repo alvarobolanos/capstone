@@ -110,16 +110,16 @@
 							<tbody>
 								<tr>
 									<th scope="col">Question</th>
-									<th scope="col">Correct Answer</th>
+									<!-- <th scope="col">Correct Answer</th> -->
 									<th scope="col">Your Answer</th>
 									<th scope="col">Mark</th>
 								</tr>
 								<tr>
 									<?php for ($i = 0; $i <= $q_counter; $i++) {?>
 									<td><?php echo $answers_array[$i]['question'] ?></td>
-									<td><?php echo $answers_array[$i]['correct_answer'] ?></td>
+									<!-- <td><?php echo $answers_array[$i]['correct_answer'] ?></td> -->
 									<td><?php echo $_POST['answer_' . ($i)] ?></td>
-									<td><?php echo ($answers_array[$i]['correct_answer'] === $_POST['answer_' . ($i)]?'✅':'❌') ?></td>
+									<td class="text-center"><?php echo ($answers_array[$i]['correct_answer'] === $_POST['answer_' . ($i)]?'✅':'❌') ?></td>
 								</tr>
 									<?php }
 									?>
