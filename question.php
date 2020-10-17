@@ -44,43 +44,46 @@
 					exit();
 				}; 
 			?>
-			<section class="container">
-				<form action="summary.php" method="POST">
-				<?php
-					if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
-						$q_counter = 0;
-						while($row = $result -> fetch_assoc()) { 
-							echo '<div id="q_' . ($q_counter+1) .'">';
-								echo '<h2>Question ' . ($q_counter+1) . '</h2>';
-								echo '<p class="text-muted">' . $row["question"]. '</p>';
-									echo '<div class="btn-group btn-group-toggle form-group" role="group" data-toggle="buttons">';
-										echo '<label class="btn btn-lg btn-outline-primary">';
-										echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_1"]; echo '" autocomplete="off" required>' . $row["answer_1"];
+			<div class="container">
+				<div class="row">
+					<form action="summary.php" method="POST">
+					<?php
+						if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
+							$q_counter = 0;
+							while($row = $result -> fetch_assoc()) { 
+								echo '<div id="q_' . ($q_counter+1) .'">';
+									echo '<h2>Question ' . ($q_counter+1) . '</h2>';
+									echo '<p class="text-muted">' . $row["question"]. '</p>';
+										echo '<div class="btn-group btn-group-toggle form-group" role="group" data-toggle="buttons">';
+											echo '<label class="btn btn-lg btn-outline-primary">';
+											echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_1"]; echo '" autocomplete="off" required>' . $row["answer_1"];
+												echo '</label>';
+											echo '<label class="btn btn-lg btn-outline-primary">';
+												echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_2"]; echo '" autocomplete="off">' . $row["answer_2"];
+												echo '</label>';
+											echo '<label class="btn btn-lg btn-outline-primary">';
+												echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_3"]; echo '" autocomplete="off">' . $row["answer_3"];
 											echo '</label>';
-										echo '<label class="btn btn-lg btn-outline-primary">';
-											echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_2"]; echo '" autocomplete="off">' . $row["answer_2"];
+											echo '<label class="btn btn-lg btn-outline-primary">';
+												echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_4"]; echo '" autocomplete="off">' . $row["answer_4"];
 											echo '</label>';
-										echo '<label class="btn btn-lg btn-outline-primary">';
-											echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_3"]; echo '" autocomplete="off">' . $row["answer_3"];
-										echo '</label>';
-										echo '<label class="btn btn-lg btn-outline-primary">';
-											echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_4"]; echo '" autocomplete="off">' . $row["answer_4"];
-										echo '</label>';
+									echo '</div>';
 								echo '</div>';
-							echo '</div>';
-						++$q_counter;
+							++$q_counter;
+							}
 						}
-					}
-				?>
-					<input type="hidden" name="id" value="<?php echo $id ?>">
-					<input type="hidden" name="username" value="<?php echo $username ?>">
-					<input type="hidden" name="title" value="<?php echo $title ?>">
-					<input type="hidden" name="q_counter" value="<?php echo ($q_counter-1) ?>">
-					</br>
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+					?>
+						<input type="hidden" name="id" value="<?php echo $id ?>">
+						<input type="hidden" name="username" value="<?php echo $username ?>">
+						<input type="hidden" name="title" value="<?php echo $title ?>">
+						<input type="hidden" name="q_counter" value="<?php echo ($q_counter-1) ?>">
+						</br>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+				</div>
 
-			</section>
+			</div>
+			
 			<?php
 				if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
 					$counter = 0;
@@ -96,7 +99,8 @@
 			// echo $questions;
 			$mysqli->close();
 			?>
-
+		<!-- Go Back Home -->
+		<?php include ("inc_gobackhome.html"); ?>	
 		</section>
 
 		<!-- Rules Modal -->

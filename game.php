@@ -51,41 +51,7 @@
 				mysqli_free_result($result);
 				?>
 				<button class="btn btn-primary btn-large btn-block" data-toggle="modal" data-target="#nameModal">Play</button>
-				</section>
-
-				<!-- Name Modal -->
-				<div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="Name Modal" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title">Welcome</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form action="question.php" method="POST" autocomplete="off">
-									<div class="container">
-										<div class="form-group">
-											<label for="username">Name</label>
-											<input type="text" autofocus class="form-control" id="username" name="username" aria-describedby="nameHelp" 
-												placeholder="Enter your name">
-											<small id="nameHelp" class="form-text text-muted">We'll display it along your top score.</small>
-											<input type="hidden" name="id" value="<?php echo $id ?>">
-											<input type="hidden" name="title" value="<?php echo $title ?>">
-										</div>
-									</div>
-							<div class="modal-footer">
-								<button type="submit" class="btn btn-primary">Let's do this!</button>
-							</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			<!-- Separator -->
-			<!-- <div class="col-md-1"></div> -->
+			</section>
 			
 			<!-- Top Scores Pane -->
 			<aside class="col-md-5 ml-auto bg-light order-md-2 order-sm-1 order-xs-1">
@@ -120,9 +86,44 @@
 					</thead>
 				</table>
 			</aside>
+
 		</div>
 
-	</div>
+		<!-- Go Back Home -->
+		<?php include ("inc_gobackhome.html"); ?>	
+		<!-- Name Modal -->
+		<div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="Name Modal" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Welcome</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form action="question.php" method="POST" autocomplete="off">
+							<div class="container">
+								<div class="form-group">
+									<label for="username">Name</label>
+									<input type="text" autofocus class="form-control" id="username" name="username"
+										aria-describedby="nameHelp" placeholder="Enter your name">
+									<small id="nameHelp" class="form-text text-muted">We'll display it along your top
+										score.</small>
+									<input type="hidden" name="id" value="<?php echo $id ?>">
+									<input type="hidden" name="title" value="<?php echo $title ?>">
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-primary">Let's do this!</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
 
 	<!-- Footer -->
 	<?php include ("inc_footer.html"); ?>
