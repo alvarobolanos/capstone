@@ -74,6 +74,7 @@
 				?>
 					<input type="hidden" name="id" value="<?php echo $id ?>">
 					<input type="hidden" name="username" value="<?php echo $username ?>">
+					<input type="hidden" name="title" value="<?php echo $title ?>">
 					<input type="hidden" name="q_counter" value="<?php echo ($q_counter-1) ?>">
 					</br>
 					<button type="submit" class="btn btn-primary">Submit</button>

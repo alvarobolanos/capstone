@@ -37,7 +37,7 @@
 	<main class="container">
 		<div class="row">
 			<!-- Game Pane -->
-			<section class="col-md-6">
+			<section class="col-md-6 ml-auto order-md-1 order-sm-2 order-xs-2">
 			<?php
 				if ($mysqli -> connect_errno) {
 					echo "Failed to connect to Database" . $mysqli -> connect_error;
@@ -45,8 +45,6 @@
 				}
 				if ($result = $mysqli -> query("SELECT * FROM games WHERE id = $id")) {
 					while($row = $result -> fetch_assoc()) {
-						// $title = $row["title"];
-						// echo '<h2>' . $row["title"] . '</h2>';
 						echo '<p class="text-muted">' . $row["description"] . '</p>';
 					}
 				}
@@ -87,10 +85,10 @@
 				</div>
 
 			<!-- Separator -->
-			<div class="col-md-1"></div>
+			<!-- <div class="col-md-1"></div> -->
 			
 			<!-- Top Scores Pane -->
-			<aside class="col-md-5 bg-light">
+			<aside class="col-md-5 ml-auto bg-light order-md-2 order-sm-1 order-xs-1">
 				<h3>Top Scores 🏆</h3>
 				<table class="table table-striped">
 					<thead>
