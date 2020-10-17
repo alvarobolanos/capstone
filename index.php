@@ -39,25 +39,22 @@
 				}
 				if ($result = $mysqli -> query("SELECT * FROM games")) {
 					$counter = 1;
-					while ($row = $result -> fetch_assoc()) {
-						echo '<div class="col-md-6">';
-							echo '<div class="card mb-6 shadow-sm">';
-								echo '<img src="" class="card-img-top" alt="">';
-								echo '<div class="card-body">';
-									echo '<img src="' . $row["image_url"] . '" class="card-img-top">';
-									echo '<h5 class="card-title">' . $row["title"] . '</h5>';
-									echo '<p class="card-text text-muted">' . substr($row["description"], 0, 150). '...</p>';
-									echo '<form action="game.php" method="POST">';
-										echo '<input type="hidden" name="title" value="' . $row["title"] . '">';
-										echo '<button class="btn btn-primary" type="submit" name="id" value="' . $row["id"]. '" value>Play</button>';
-									echo '</form>';
-								echo '</div>';
-							echo '</div>';
-						echo '</div>';
-						if ($counter%2 == 0) {
-							echo '<br>';
-						}
-						++$counter;
+					while ($row = $result -> fetch_assoc()) {?>
+						<div class="col-md-6">
+							<div class="card mb-6 shadow-sm">
+								<img src="" class="card-img-top" alt="">
+								<div class="card-body">
+									<img src="<?php echo $row["image_url"]; ?>" class="card-img-top">	
+									<h5 class="card-title"><?php echo $row["title"]; ?></h5>
+									<p class="card-text text-muted"><?php echo substr($row["description"], 0, 150); ?>...</p>
+									<form action="game.php" method="POST">
+										<input type="hidden" name="title" value="<?php echo $row["title"]; ?>">
+										<button class="btn btn-primary" type="submit" name="id" value="<?php echo $row["id"]; ?>" value>Play</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					<?php
 					}
 					mysqli_free_result($result);
 				}
