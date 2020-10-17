@@ -72,10 +72,7 @@
 
 			// Calculating the score as a percentage.
 			$final_score = (($score * 100)/($q_counter+1));
-			// echo 'You correctly answered ' . ($score) . ' out of ' . ($q_counter+1) . '. ';
-			// echo "Here's your score " . $username . ": ";
-			// printf("%.2f", $final_score);
-			// echo '%'
+
 		?>
 		
 		<div class="container text-center">

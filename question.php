@@ -44,7 +44,7 @@
 					exit();
 				}; 
 			?>
-			<section>
+			<section class="container">
 				<form action="summary.php" method="POST">
 				<?php
 					if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
@@ -96,20 +96,6 @@
 			// echo $questions;
 			$mysqli->close();
 			?>
-			
-			<script>
-				var questions = <?php echo $questions; ?>;
-				var i = 0;
-				while (i < questions.length) {
-					console.log(questions[i].question);
-					console.log(questions[i].answer_1);
-					console.log(questions[i].answer_2);
-					console.log(questions[i].answer_3);
-					console.log(questions[i].answer_4);
-					++i;
-				}
-
-			</script>
 
 		</section>
 
