@@ -21,6 +21,7 @@
 	<?php include ("db_connect.php"); 
 		if (isset($_POST)) {
 			$id = $_POST['id'];
+			$title = $_POST['title'];
 			$username = $_POST['username'];
 			$q_counter = $_POST['q_counter'];
 		}
@@ -29,45 +30,107 @@
 	<!-- Header -->
 	<?php include ("inc_header.html"); ?>
 	
+	<!-- Jumbotron -->
+	<div class="jumbotron text-center">
+		<h1><?php echo $title; ?></h1>
+	</div>
+
 	<!-- Main -->
 	<main class="container">
 
 		<section class="container">
+
 		<?php
 			// Extracting the correct answers
 			if ($mysqli -> connect_errno) {
 				echo "Failed to connect to Database" . $mysqli -> connect_error;
 				exit();
 			}
-			if ($result = $mysqli -> query("SELECT correct_answer FROM capstone.qanda WHERE game_id = $id")) {
+			if ($result = $mysqli -> query("SELECT question, correct_answer FROM qanda WHERE game_id = $id")) {
 				while($row = $result -> fetch_assoc()) {
 					$answers_array[] = $row;
 				}
 			}
+			
 			mysqli_free_result($result);
 			$mysqli->close();
 			
-			pre_r($answers_array);
+			// Printing the answers_array
+			// pre_r($answers_array);
+
+			// Encoding the answers_array to json
 			// $correct_answers = json_encode($answers_array);
-			// echo $correct_answers;
 			
 			// Scoring System
 
 			$score = 0;
 			for ($i = 0; $i <= $q_counter; $i++) {
-				// echo $answers_array[$i]['correct_answer'];
-				// echo $_POST['answer_' . $i];
 				if ($answers_array[$i]['correct_answer'] == $_POST['answer_' . ($i)]) {
 					$score++;
 				}
 			}
 
+			// Calculating the score as a percentage.
 			$final_score = (($score * 100)/($q_counter+1));
-			echo 'You correctly answered ' . ($score) . ' out of ' . ($q_counter+1) . '. ';
-			echo "Here's your score " . $username . ": ";
-			printf("%.2f", $final_score);
-			echo '%'
+			// echo 'You correctly answered ' . ($score) . ' out of ' . ($q_counter+1) . '. ';
+			// echo "Here's your score " . $username . ": ";
+			// printf("%.2f", $final_score);
+			// echo '%'
 		?>
+		
+		<div class="container text-center">
+			<h1><?php printf("%.2f", $final_score) ?> %</h1>
+	
+			<h4 class="text-muted">You scored <?php echo $score ?> correct answers out of <?php echo ($q_counter+1) ?>.</h4>
+			<p>Thank you for playing <?php echo $username ?>.</p>
+	
+			<form action="game.php" method="post">
+				<input type="hidden" name="id" value="<?php echo $id ?>">
+				<input type="hidden" name="title" value="<?php echo $title ?>">
+				<input type="hidden" name="username" value="<?php echo $username ?>">
+				<input type="hidden" name="score" value="<?php echo $score ?>">
+				<button type="submit" class="btn btn-primary btn-lg">Check the Top Scores</button>
+			</form>
+		</div>
+		<hr/>
+		<div class="accordion" id="accordionExample">
+			<div class="card">
+				<div class="card-header" id="headingOne">
+					<h2 class="mb-0">
+						<button class="btn btn-link btn-block text-left text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+						Check out the full summary.
+						</button>
+					</h2>
+				</div>
+
+				<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+					<div class="card-body">
+						<table class="table table-striped">
+							<thead>
+							<tbody>
+								<tr>
+									<th scope="col">Question</th>
+									<!-- <th scope="col">Correct Answer</th> -->
+									<th scope="col">Your Answer</th>
+									<th scope="col">Mark</th>
+								</tr>
+								<tr>
+									<?php for ($i = 0; $i <= $q_counter; $i++) {?>
+									<td><?php echo $answers_array[$i]['question'] ?></td>
+									<!-- <td><?php echo $answers_array[$i]['correct_answer'] ?></td> -->
+									<td><?php echo $_POST['answer_' . ($i)] ?></td>
+									<td class="text-center"><?php echo ($answers_array[$i]['correct_answer'] === $_POST['answer_' . ($i)]?'✅':'❌') ?></td>
+								</tr>
+									<?php }
+									?>
+							<tbody>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 		</section>
 	</main>
