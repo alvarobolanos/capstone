@@ -22,6 +22,7 @@
 		if (isset($_POST)) {
 			$id = $_POST['id'];
 			$title = $_POST['title'];
+			$final_score = $_POST['final_score'];
 		}
 	?>
 

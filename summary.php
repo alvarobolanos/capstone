@@ -72,7 +72,6 @@
 
 			// Calculating the score as a percentage.
 			$final_score = (($score * 100)/($q_counter+1));
-
 		?>
 		
 		<div class="container text-center">
@@ -85,8 +84,8 @@
 				<input type="hidden" name="id" value="<?php echo $id ?>">
 				<input type="hidden" name="title" value="<?php echo $title ?>">
 				<input type="hidden" name="username" value="<?php echo $username ?>">
-				<input type="hidden" name="score" value="<?php echo $score ?>">
-				<button type="submit" class="btn btn-primary btn-lg">Check the Top Scores</button>
+				<input type="hidden" name="final_score" value="<?php echo $final_score ?>">
+				<button type="submit" class="btn btn-success btn-lg">Check the Top Scores</button>
 			</form>
 		</div>
 		<hr/>
@@ -94,8 +93,7 @@
 			<div class="card">
 				<div class="card-header" id="headingOne">
 					<h2 class="mb-0">
-						<button class="btn btn-link btn-block text-left text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-						Check out the full summary.
+						<button class="btn btn-link btn-block text-left text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> Check out the full summary.
 						</button>
 					</h2>
 				</div>
@@ -118,7 +116,8 @@
 									<td><?php echo $_POST['answer_' . ($i)] ?></td>
 									<td class="text-center"><?php echo ($answers_array[$i]['correct_answer'] === $_POST['answer_' . ($i)]?'✅':'❌') ?></td>
 								</tr>
-									<?php }
+									<?php 
+									}
 									?>
 							<tbody>
 							</thead>

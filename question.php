@@ -50,29 +50,29 @@
 					<?php
 						if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
 							$q_counter = 0;
-							while($row = $result -> fetch_assoc()) { 
-								echo '<div id="q_' . ($q_counter+1) .'">';
-									echo '<h2>Question ' . ($q_counter+1) . '</h2>';
-									echo '<p class="text-muted">' . $row["question"]. '</p>';
-										echo '<div class="btn-group btn-group-toggle form-group" role="group" data-toggle="buttons">';
-											echo '<label class="btn btn-lg btn-outline-primary">';
-											echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_1"]; echo '" autocomplete="off" required>' . $row["answer_1"];
-												echo '</label>';
-											echo '<label class="btn btn-lg btn-outline-primary">';
-												echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_2"]; echo '" autocomplete="off">' . $row["answer_2"];
-												echo '</label>';
-											echo '<label class="btn btn-lg btn-outline-primary">';
-												echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_3"]; echo '" autocomplete="off">' . $row["answer_3"];
-											echo '</label>';
-											echo '<label class="btn btn-lg btn-outline-primary">';
-												echo '<input type="radio" name="answer_' . ($q_counter) . '" value="'; echo $row["answer_4"]; echo '" autocomplete="off">' . $row["answer_4"];
-											echo '</label>';
-									echo '</div>';
-								echo '</div>';
+							while($row = $result -> fetch_assoc()) { ?>
+								<div id="q_' . ($q_counter+1) .'">
+									<h2>Question <?php echo ($q_counter+1) ?></h2>
+									<p class="text-muted"><?php echo $row["question"] ?></p>
+									<div class="btn-group btn-group-toggle form-group" role="group" data-toggle="buttons">
+										<label class="btn btn-lg btn-outline-primary">
+											<input type="radio" name="answer_<?php echo($q_counter) ?>" value="<?php echo $row["answer_1"] ?>" autocomplete="off" required><?php echo $row["answer_1"] ?>
+										</label>
+										<label class="btn btn-lg btn-outline-primary">
+											<input type="radio" name="answer_<?php echo($q_counter) ?>" value="<?php echo $row["answer_2"] ?>" autocomplete="off" required><?php echo $row["answer_2"] ?>
+										</label>
+										<label class="btn btn-lg btn-outline-primary">
+											<input type="radio" name="answer_<?php echo($q_counter) ?>" value="<?php echo $row["answer_3"] ?>" autocomplete="off" required><?php echo $row["answer_3"] ?>
+										</label>
+										<label class="btn btn-lg btn-outline-primary">
+										<input type="radio" name="answer_<?php echo($q_counter) ?>" value="<?php echo $row["answer_4"] ?>" autocomplete="off" required><?php echo $row["answer_4"] ?>
+										</label>
+									</div>
+								</div>
+							<?php
 							++$q_counter;
 							}
-						}
-					?>
+						} ?>
 						<input type="hidden" name="id" value="<?php echo $id ?>">
 						<input type="hidden" name="username" value="<?php echo $username ?>">
 						<input type="hidden" name="title" value="<?php echo $title ?>">
@@ -104,27 +104,30 @@
 		</section>
 
 		<!-- Rules Modal -->
-			<div class="modal fade" id="rulesModal" tabindex="-1" role="dialog" aria-labelledby="Rules Modal" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Rules</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+		<div class="modal fade" id="rulesModal" tabindex="-1" role="dialog" aria-labelledby="Rules Modal" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Rules</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="container">
+							<p>You will be presented with a series of questions.<br/><br/>
+							Your job is to answer as many questions correctly as you can.<br/><br/>
+							In the end you will be presented with a score based on the correctly answered questions.
+							</p>
 						</div>
-						<div class="modal-body">
-							<div class="container">
-								<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique odit provident, est consequatur labore hic rerum unde officia itaque, error quae reiciendis iusto, accusantium nemo. Aperiam placeat deleniti optio commodi?
-								</p>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-primary">Got it!</button>
-						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 			</div>
+		</div>
+
 
 	</main>
 
@@ -143,6 +146,12 @@
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
 	</script>
 	
+	<script>
+			$(document).ready(function(){
+				$("#rulesModal").modal('show');
+			});
+	</script>
+
 	<!-- <?php 
 	echo 'Get';
 	pre_r($_GET);
@@ -154,7 +163,6 @@
 </html>
 
 <?php 
-
 function pre_r($array) {
 	echo '<pre>';
 	print_r($array);
