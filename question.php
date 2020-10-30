@@ -48,10 +48,10 @@
 				<div class="row">
 					<form action="summary.php" method="POST">
 					<?php
-						if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
+						if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id;")) {
 							$q_counter = 0;
 							while($row = $result -> fetch_assoc()) { ?>
-								<div id="q_' . ($q_counter+1) .'">
+								<div id="q_<?php echo ($q_counter+1); ?>">
 									<h2>Question <?php echo ($q_counter+1) ?></h2>
 									<p class="text-muted"><?php echo $row["question"] ?></p>
 									<div class="btn-group btn-group-toggle form-group" role="group" data-toggle="buttons">
@@ -78,7 +78,17 @@
 						<input type="hidden" name="title" value="<?php echo $title ?>">
 						<input type="hidden" name="q_counter" value="<?php echo ($q_counter-1) ?>">
 						</br>
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<div class="row">
+							<div class="col">
+								<button id="previous" type="button" class="btn btn-primary" onclick="displayPrevious();">Previous Question</button>
+							</div>
+ 							<div class="col">
+								<button id="next" type="button" class="btn btn-primary" onclick="displayOneQuestion();">Next Question</button>
+							 </div>
+							<div class="col text-right">
+								<button id="submit" type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</div>
 					</form>
 				</div>
 
@@ -115,14 +125,17 @@
 					</div>
 					<div class="modal-body">
 						<div class="container">
-							<p>You will be presented with a series of questions.<br/><br/>
-							Your job is to answer as many questions correctly as you can.<br/><br/>
-							In the end you will be presented with a score based on the correctly answered questions.
-							</p>
+							<ul>
+								<li>You will be presented with a series of questions.</li>
+								<li>Your job is to answer as many questions correctly as you can.</li>
+								<li>The quicker you answer the questions, the higher you will score.</li>
+								<li>Note however that there is no time limit.</li>
+								<li>In the end you will be presented with a score based on the correctly answered questions.</li>
+							</ul>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button id="startTimer" type="startTimer" class="btn btn-secondary" data-dismiss="modal">Start the Timer</button>
 					</div>
 				</div>
 			</div>
@@ -147,11 +160,20 @@
 	</script>
 	
 	<script>
-			$(document).ready(function(){
-				$("#rulesModal").modal('show');
-			});
+		$(document).ready(function(){
+			$("#rulesModal").modal('show');
+		});
 	</script>
+	<!-- <script>
+		$(document).ready(function(){
+			$("#startTimer").click(function({
 
+			}));
+		});
+	</script> -->
+
+	<script>var questions = <?php echo $questions; ?>;</script>
+	<script type="text/javascript" src="gameBehavior.js"></script>
 	<!-- <?php 
 	echo 'Get';
 	pre_r($_GET);

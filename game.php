@@ -22,7 +22,22 @@
 		if (isset($_POST)) {
 			$id = $_POST['id'];
 			$title = $_POST['title'];
+			$username = $_POST['username'];
 			$final_score = $_POST['final_score'];
+			if ($final_score != null) {
+				if ($mysqli -> connect_errno) {
+					echo "Failed to connect to Database" . $mysqli -> connect_error;
+					exit();
+				}
+				if ($result = $mysqli -> query("INSERT INTO players (username) VALUES ('$username');")) {
+					$lastPlayerId = $mysqli-> insert_id;
+				}
+				if ($result = $mysqli -> query("INSERT INTO scores (score, game_id) VALUES ($final_score, $id);")){
+					$lastScoreId = $mysqli-> insert_id;
+				}
+				if ($result = $mysqli -> query("INSERT INTO players_scores (player_id,score_id) VALUES ($lastPlayerId, $lastScoreId);")) {
+				}
+			}
 		}
 	?>
 
@@ -74,10 +89,13 @@
 									ORDER BY scores.score DESC
 									LIMIT 5;")) {
 								$counter = 1;
-								while($row = $result -> fetch_assoc()) {
-									echo '<th scope="row">' . $counter . '</th>';
-									echo '<td>' . $row["username"] . '</td>';
-									echo '<td>' . $row["score"] . '</td>';
+								while($row = $result -> fetch_assoc()) {?>
+									<tr>
+										<td><?php echo $counter; ?></td>
+										<td><?php echo $row['username']; ?></td>
+										<td><?php printf("%.2f", $row['score']); ?> %</td>
+									</tr>
+									<?php ++$counter;
 								}
 							}
 							mysqli_free_result($result);
