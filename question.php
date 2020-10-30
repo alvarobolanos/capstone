@@ -160,9 +160,9 @@
 	</script>
 	
 	<script>
-		$(document).ready(function(){
-			$("#rulesModal").modal('show');
-		});
+		// $(document).ready(function(){
+		// 	$("#rulesModal").modal('show');
+		// });
 	</script>
 	<!-- <script>
 		$(document).ready(function(){
