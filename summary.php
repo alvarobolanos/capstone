@@ -19,11 +19,14 @@
 <body>
 	<!-- Connect to database -->
 	<?php include ("db_connect.php"); 
+		
+		// Retrieving all varibles from the POST variable.
 		if (isset($_POST)) {
 			$id = $_POST['id'];
 			$title = $_POST['title'];
 			$username = $_POST['username'];
 			$q_counter = $_POST['q_counter'];
+			$seed = $_POST['seed'];
 		}
 	?>
 	
@@ -46,7 +49,7 @@
 				echo "Failed to connect to Database" . $mysqli -> connect_error;
 				exit();
 			}
-			if ($result = $mysqli -> query("SELECT question, correct_answer FROM qanda WHERE game_id = $id")) {
+			if ($result = $mysqli -> query("SELECT question, correct_answer FROM qanda WHERE game_id = $id ORDER BY RAND($seed);")) {
 				while($row = $result -> fetch_assoc()) {
 					$answers_array[] = $row;
 				}

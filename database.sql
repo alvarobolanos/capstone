@@ -63,46 +63,57 @@ SELECT * FROM games;
 
 INSERT
 INTO capstone.qanda (question, answer_1, answer_2, answer_3, answer_4, correct_answer, game_id)
-VALUES ('What is the largest Island in the Caribbean?', 'Puerto Rico', 'La Hispaniola', 'Cuba', 'Dominica', 'Cuba', 1), 
+VALUES ('What is the largest Island in the Caribbean?', 'Puerto Rico', 'La Hispaniola', 'Cuba', 'Dominica', 'Cuba',1), 
 ('Where is the tallest waterfall located?','Venezuela','USA','Congo','Denmark','Denmark',1),
 ('What is the tallest peak in Europe?','Mt. Elbrus','Mt. Blanc','Mt. Olympus','Mt. Edna','Mt. Elbrus',1),
 ('In what country could you find Tungurahua volcano?','Costa Rica','Ecuador','Mexico','Chile','Ecuador',1),
 ('What is the biggest metropolitan area (by population) in the USA?','Boston-Cambridge-Newton','Dallas-Fort Worth','Miami-Ft. Lauderdale-West Palm Beach','New York-Newark-Jersey City','New York-Newark-Jersey City',1),
 ('What country has the highest bird diversity?','USA','India','Colombia','Indonesia','Colombia',1),
-('What is the country with the largest forest area?','Russian Federation','Brazil','Canada','China','Russian Federation',1);
+('What is the country with the largest forest area?','Russian Federation','Brazil','Canada','China','Russian Federation',1),
+('Which country is surrounded by only one ocean?','USA','Iceland','Panama','Canada','Iceland',1),
+('In what continent is the Gobi Desert located?','North America','Africa','Asia','South America','Asia',1),
+('What is the worlds deepest lake?','Victoria','Titicaca','Como','Baikal','Baikal',1),
+('What is the worlds longest above-water mountain range?','The Andes','Transantarctic Mountains','Rocky Mountains','Alpes Mountains','The Andes',1),
+('What is the longest river in Europe called?','Volga','Danube','Don','Reka','Volga',1),
+('Which is the only country where you can see above sea-level the longest mountain range Mid-Atlantic ridge?','Azore','Tristan da Cunha','Iceland','Ascension Island','Iceland',1),
+('What is the oldest city in the United States?','Jamestown Virginia','Saint Augustine Florida','Santa Fe New Mexico','Plymouth Massachusetts','Saint Augustine Florida',1),
+('What is the oldest continuously inhabited city in the world?','Aleppo Syria','Athens Greece','Faiyum Egypt','Damascus Syria','Damascus Syria',1),
+('Where is located the oldest continuously working university in the Americas?','Harvard Cambridge','Autonomous University of Santo Domingo','University of San Marcos Lima','Universidad de La Habana','University of San Marcos Lima',1),
+('Which US state borders Lake Huron?','Michigan','Wisconsin','Ohio','Pennsylvania','Michigan',1),
+('What was the most polluted country in 2019?','China','Bangladesh','India','USA','Bangladesh',1),
+('What is the smallest country in Europe?','Monaco','San Marino','Andorra','Vatican City','Vatican City',1),
+('What is the most densely populated country in Africa in 2020?','Ethiopia','Egypt','DR Congo','Nigeria','Nigeria',1);
 
-SELECT * FROM qanda;
-
-SELECT question, correct_answer FROM capstone.qanda WHERE game_id=1;
 
 -- Insert values into the players table
-INSERT 
-INTO capstone.players (username)
-VALUES ('alvaro');
+-- INSERT 
+-- INTO capstone.players (username)
+-- VALUES ('Alvaro');
 -- $lastPlayerId = $mysqli-> insert_id
 
 -- Insert values into scores table
-INSERT
-INTO capstone.scores (score, game_id)
-VALUES (90.0, 1);
+-- INSERT
+-- INTO capstone.scores (score, game_id)
+-- VALUES (90.0, 1);
 -- $lastScoreId = $mysqli -> insert_id
 
 -- Insert values into players_scores table
-INSERT 
-INTO capstone.players_scores (player_id, score_id)
-VALUES (1, 1); -- use the $lastPlayerId and $lastScoreId
+-- INSERT 
+-- INTO capstone.players_scores (player_id, score_id)
+-- VALUES (1, 1); 
+-- use the $lastPlayerId and $lastScoreId
 
-SELECT * FROM capstone.players;
+-- SELECT * FROM capstone.players;
 
-SELECT * FROM capstone.scores;
+-- SELECT * FROM capstone.scores;
 
-SELECT * FROM capstone.players_scores;
+-- SELECT * FROM capstone.players_scores;
 
 -- Query scores and player name to populate the top scores table
-SELECT players.username, scores.score FROM players 
-JOIN players_scores ON players_scores.player_id = players.id
-JOIN scores ON scores.id = players_scores.score_id
-ORDER BY scores.score desc
-LIMIT 5;
+-- SELECT players.username, scores.score FROM players 
+-- JOIN players_scores ON players_scores.player_id = players.id
+-- JOIN scores ON scores.id = players_scores.score_id
+-- ORDER BY scores.score desc
+-- LIMIT 5;
 
 -- update scores and the players_scores table

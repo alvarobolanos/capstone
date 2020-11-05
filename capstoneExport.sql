@@ -56,7 +56,7 @@ CREATE TABLE `players` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,6 @@ CREATE TABLE `players` (
 
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
-INSERT INTO `players` VALUES (1,'alvaro','2020-10-05 23:31:22');
 /*!40000 ALTER TABLE `players` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +91,6 @@ CREATE TABLE `players_scores` (
 
 LOCK TABLES `players_scores` WRITE;
 /*!40000 ALTER TABLE `players_scores` DISABLE KEYS */;
-INSERT INTO `players_scores` VALUES (1,1);
 /*!40000 ALTER TABLE `players_scores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +114,7 @@ CREATE TABLE `qanda` (
   PRIMARY KEY (`id`),
   KEY `game_id` (`game_id`),
   CONSTRAINT `qanda_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +123,7 @@ CREATE TABLE `qanda` (
 
 LOCK TABLES `qanda` WRITE;
 /*!40000 ALTER TABLE `qanda` DISABLE KEYS */;
-INSERT INTO `qanda` VALUES (1,'What is the largest Island in the Caribbean?','Puerto Rico','La Hispaniola','Cuba','Dominica','Cuba','2020-10-05 23:31:22',1),(2,'Where is the tallest waterfall located?','Venezuela','USA','Congo','Denmark','Denmark','2020-10-05 23:31:22',1),(3,'What is the tallest peak in Europe?','Mt. Elbrus','Mt. Blanc','Mt. Olympus','Mt. Edna','Mt. Elbrus','2020-10-05 23:31:22',1),(4,'In what country could you find Tungurahua volcano?','Costa Rica','Ecuador','Mexico','Chile','Ecuador','2020-10-05 23:31:22',1),(5,'What is the biggest metropolitan area (by population) in the USA?','Boston-Cambridge-Newton','Dallas-Fort Worth','Miami-Ft. Lauderdale-West Palm Beach','New York-Newark-Jersey City','New York-Newark-Jersey City','2020-10-05 23:31:22',1),(6,'What country has the highest bird diversity?','USA','India','Colombia','Indonesia','Colombia','2020-10-05 23:31:22',1),(7,'What is the country with the largest forest area?','Russian Federation','Brazil','Canada','China','Russian Federation','2020-10-05 23:31:22',1);
+INSERT INTO `qanda` VALUES (1,'What is the largest Island in the Caribbean?','Puerto Rico','La Hispaniola','Cuba','Dominica','Cuba','2020-11-03 02:22:28',1),(2,'Where is the tallest waterfall located?','Venezuela','USA','Congo','Denmark','Denmark','2020-11-03 02:22:28',1),(3,'What is the tallest peak in Europe?','Mt. Elbrus','Mt. Blanc','Mt. Olympus','Mt. Edna','Mt. Elbrus','2020-11-03 02:22:28',1),(4,'In what country could you find Tungurahua volcano?','Costa Rica','Ecuador','Mexico','Chile','Ecuador','2020-11-03 02:22:28',1),(5,'What is the biggest metropolitan area (by population) in the USA?','Boston-Cambridge-Newton','Dallas-Fort Worth','Miami-Ft. Lauderdale-West Palm Beach','New York-Newark-Jersey City','New York-Newark-Jersey City','2020-11-03 02:22:28',1),(6,'What country has the highest bird diversity?','USA','India','Colombia','Indonesia','Colombia','2020-11-03 02:22:28',1),(7,'What is the country with the largest forest area?','Russian Federation','Brazil','Canada','China','Russian Federation','2020-11-03 02:22:28',1),(8,'Which country is surrounded by only one ocean?','USA','Iceland','Panama','Canada','Iceland','2020-11-03 02:22:28',1),(9,'In what continent is the Gobi Desert located?','North America','Africa','Asia','South America','Asia','2020-11-03 02:22:28',1),(10,'What is the worlds deepest lake?','Victoria','Titicaca','Como','Baikal','Baikal','2020-11-03 02:22:28',1),(11,'What is the worlds longest above-water mountain range?','The Andes','Transantarctic Mountains','Rocky Mountains','Alpes Mountains','The Andes','2020-11-03 02:22:28',1),(12,'What is the longest river in Europe called?','Volga','Danube','Don','Reka','Volga','2020-11-03 02:22:28',1),(13,'Which is the only country where you can see above sea-level the longest mountain range Mid-Atlantic ridge?','Azore','Tristan da Cunha','Iceland','Ascension Island','Iceland','2020-11-03 02:22:28',1),(14,'What is the oldest city in the United States?','Jamestown Virginia','Saint Augustine Florida','Santa Fe New Mexico','Plymouth Massachusetts','Saint Augustine Florida','2020-11-03 02:22:28',1),(15,'What is the oldest continuously inhabited city in the world?','Aleppo Syria','Athens Greece','Faiyum Egypt','Damascus Syria','Damascus Syria','2020-11-03 02:22:28',1),(16,'Where is located the oldest continuously working university in the Americas?','Harvard Cambridge','Autonomous University of Santo Domingo','University of San Marcos Lima','Universidad de La Habana','University of San Marcos Lima','2020-11-03 02:22:28',1),(17,'Which US state borders Lake Huron?','Michigan','Wisconsin','Ohio','Pennsylvania','Michigan','2020-11-03 02:22:28',1),(18,'What was the most polluted country in 2019?','China','Bangladesh','India','USA','Bangladesh','2020-11-03 02:22:28',1),(19,'What is the smallest country in Europe?','Monaco','San Marino','Andorra','Vatican City','Vatican City','2020-11-03 02:22:28',1),(20,'What is the most densely populated country in Africa in 2020?','Ethiopia','Egypt','DR Congo','Nigeria','Nigeria','2020-11-03 02:22:28',1);
 /*!40000 ALTER TABLE `qanda` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +142,7 @@ CREATE TABLE `scores` (
   PRIMARY KEY (`id`),
   KEY `game_id` (`game_id`),
   CONSTRAINT `scores_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +151,6 @@ CREATE TABLE `scores` (
 
 LOCK TABLES `scores` WRITE;
 /*!40000 ALTER TABLE `scores` DISABLE KEYS */;
-INSERT INTO `scores` VALUES (1,90,'2020-10-05 23:31:22',1);
 /*!40000 ALTER TABLE `scores` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -166,4 +163,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-12 20:29:48
+-- Dump completed on 2020-11-04 20:11:17

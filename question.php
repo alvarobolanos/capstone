@@ -48,9 +48,13 @@
 				<div class="row">
 					<form action="summary.php" method="POST">
 					<?php
-						if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id;")) {
+						$json_array = array();
+						$seed = time();
+						if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id ORDER BY RAND($seed);")) {
+							$limiter = $result -> num_rows;
+							$limiter = floor($limiter/2);
 							$q_counter = 0;
-							while($row = $result -> fetch_assoc()) { ?>
+							while($q_counter < $limiter && $row = $result -> fetch_assoc()) {?>
 								<div id="q_<?php echo ($q_counter+1); ?>">
 									<h2>Question <?php echo ($q_counter+1) ?></h2>
 									<p class="text-muted"><?php echo $row["question"] ?></p>
@@ -70,13 +74,17 @@
 									</div>
 								</div>
 							<?php
+							$json_array[] = $row;
 							++$q_counter;
 							}
+							$questions = json_encode($json_array);
+							$mysqli->close();
 						} ?>
 						<input type="hidden" name="id" value="<?php echo $id ?>">
 						<input type="hidden" name="username" value="<?php echo $username ?>">
 						<input type="hidden" name="title" value="<?php echo $title ?>">
 						<input type="hidden" name="q_counter" value="<?php echo ($q_counter-1) ?>">
+						<input type="hidden" name="seed" value="<?php echo ($seed) ?>">
 						</br>
 						<div class="row">
 							<div class="col">
@@ -94,21 +102,7 @@
 
 			</div>
 			
-			<?php
-				if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id")) {
-					$counter = 0;
-					$json_array = array();
-					while ($row = $result -> fetch_assoc()) {
-						$json_array[] = $row;
-						++$counter;
-					}
-				}
-
-			// pre_r($json_array);
-			$questions = json_encode($json_array);
-			// echo $questions;
-			$mysqli->close();
-			?>
+			
 		<!-- Go Back Home -->
 		<?php include ("inc_gobackhome.html"); ?>	
 		</section>
