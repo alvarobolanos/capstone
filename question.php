@@ -23,6 +23,7 @@
 			$id = $_POST['id'];
 			$title = $_POST['title'];
 			$username = $_POST['username'];
+			$startTime = time(); 
 		}
 	?>
 	<!-- Header -->
@@ -80,11 +81,13 @@
 							$questions = json_encode($json_array);
 							$mysqli->close();
 						} ?>
-						<input type="hidden" name="id" value="<?php echo $id ?>">
-						<input type="hidden" name="username" value="<?php echo $username ?>">
-						<input type="hidden" name="title" value="<?php echo $title ?>">
-						<input type="hidden" name="q_counter" value="<?php echo ($q_counter-1) ?>">
-						<input type="hidden" name="seed" value="<?php echo ($seed) ?>">
+						<input type="hidden" name="id" value="<?php echo $id; ?>">
+						<input type="hidden" name="username" value="<?php echo $username; ?>">
+						<input type="hidden" name="title" value="<?php echo $title; ?>">
+						<input type="hidden" name="q_counter" value="<?php echo ($q_counter-1); ?>">
+						<input type="hidden" name="seed" value="<?php echo $seed; ?>">
+						<input type="hidden" name="startTime" value="<?php echo $startTime; ?>">
+						<input type="hidden" name="endTime" value="<?php echo ($endTime = time()); ?>">
 						</br>
 						<div class="row">
 							<div class="col">
@@ -113,23 +116,17 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title">Rules</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						<div class="container">
-							<ul>
-								<li>You will be presented with a series of questions.</li>
-								<li>Your job is to answer as many questions correctly as you can.</li>
-								<li>The quicker you answer the questions, the higher you will score.</li>
-								<li>Note however that there is no time limit.</li>
-								<li>In the end you will be presented with a score based on the correctly answered questions.</li>
-							</ul>
+						<div class="container text-center">
+							<p>Click the button below to start the game.<p>
+							<p>Answer quickly to maximize your score.<p>
+							<p>You've got this!<p>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button id="startTimer" type="startTimer" class="btn btn-secondary" data-dismiss="modal">Start the Timer</button>
+						<button id="startTimer" type="startTimer" class="btn btn-secondary" data-dismiss="modal">Start</button>
 					</div>
 				</div>
 			</div>
@@ -154,17 +151,10 @@
 	</script>
 	
 	<script>
-		// $(document).ready(function(){
-		// 	$("#rulesModal").modal('show');
-		// });
-	</script>
-	<!-- <script>
 		$(document).ready(function(){
-			$("#startTimer").click(function({
-
-			}));
+			$("#rulesModal").modal('show');
 		});
-	</script> -->
+	</script>
 
 	<script>var questions = <?php echo $questions; ?>;</script>
 	<script type="text/javascript" src="gameBehavior.js"></script>

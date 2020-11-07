@@ -125,8 +125,7 @@
 							<div class="container">
 								<div class="form-group">
 									<label for="username">Name</label>
-									<input type="text" autofocus class="form-control" id="username" name="username"
-										aria-describedby="nameHelp" placeholder="Enter your name">
+									<input type="text" autofocus class="form-control" id="username" name="username" aria-describedby="nameHelp" placeholder="Enter your name" value="<?php echo $username ?>" required>
 									<small id="nameHelp" class="form-text text-muted">We'll display it along your top
 										score.</small>
 									<input type="hidden" name="id" value="<?php echo $id ?>">

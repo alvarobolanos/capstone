@@ -27,6 +27,8 @@
 			$username = $_POST['username'];
 			$q_counter = $_POST['q_counter'];
 			$seed = $_POST['seed'];
+			$startTime = $_POST['startTime'];
+			$endTime = $_POST['endTime'];
 		}
 	?>
 	
@@ -58,13 +60,10 @@
 			mysqli_free_result($result);
 			$mysqli->close();
 			
-			// Printing the answers_array
-			// pre_r($answers_array);
-
-			// Encoding the answers_array to json
-			// $correct_answers = json_encode($answers_array);
-			
 			// Scoring System
+
+			$timeInterval = date_diff($startTime, $endTime);
+			echo $timeInterval->format('%s');
 
 			$score = 0;
 			for ($i = 0; $i <= $q_counter; $i++) {
@@ -148,7 +147,7 @@
 		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
 	</script>
 
-	<?php 
+	<?php
 	// echo 'Get';
 	// pre_r($_GET);
 	// echo 'Post';
