@@ -28,7 +28,7 @@
 			$q_counter = $_POST['q_counter'];
 			$seed = $_POST['seed'];
 			$startTime = $_POST['startTime'];
-			$endTime = $_POST['endTime'];
+			$endTime = $_SERVER['REQUEST_TIME'];
 		}
 	?>
 	
@@ -60,26 +60,32 @@
 			mysqli_free_result($result);
 			$mysqli->close();
 			
+			
 			// Scoring System
-
-			$timeInterval = date_diff($startTime, $endTime);
-			echo $timeInterval->format('%s');
-
 			$score = 0;
 			for ($i = 0; $i <= $q_counter; $i++) {
 				if ($answers_array[$i]['correct_answer'] == $_POST['answer_' . ($i)]) {
 					$score++;
 				}
 			}
-
+			
 			// Calculating the score as a percentage.
-			$final_score = (($score * 100)/($q_counter+1));
+			// $final_score = (($score * 100)/($q_counter+1));
+			
+			// Calculating the score with a timeInterval exponentially decaying multiplier
+			$timeInterval = $endTime - $startTime;
+			if ($timeInterval != 0) {
+				$final_score = 100 * $score * exp(-2*abs($timeInterval)/60);
+			} else{
+				$final_score = 0;
+			}
 		?>
 		
 		<div class="container text-center">
-			<h1><?php printf("%.2f", $final_score) ?> %</h1>
-	
-			<h4 class="text-muted">You scored <?php echo $score ?> correct answers out of <?php echo ($q_counter+1) ?>.</h4>
+			
+			<h4>You scored <?php echo $score ?> correct answers out of <?php echo ($q_counter+1) ?>.</h4>
+			<h5 class="text-muted">You completed the game in: <?php echo($timeInterval>60 ? ($timeInterval/60 . ' Minutes and ' . ($timeInterval/60)%60 . ' Seconds.') : ($timeInterval%60 . ' Seconds.')); ?></h5>
+			<h1>Final Score: <?php printf("%.2f", $final_score) ?></h1>
 			<p>Thank you for playing <?php echo $username ?>.</p>
 	
 			<form action="game.php" method="post">
@@ -87,7 +93,7 @@
 				<input type="hidden" name="title" value="<?php echo $title ?>">
 				<input type="hidden" name="username" value="<?php echo $username ?>">
 				<input type="hidden" name="final_score" value="<?php echo $final_score ?>">
-				<button type="submit" class="btn btn-success btn-lg">Check the Top Scores</button>
+				<button type="submit" class="btn btn-success btn-lg">Save and Check Top Scores</button>
 			</form>
 		</div>
 		<hr/>

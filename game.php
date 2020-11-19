@@ -31,11 +31,14 @@
 				}
 				if ($result = $mysqli -> query("INSERT INTO players (username) VALUES ('$username');")) {
 					$lastPlayerId = $mysqli-> insert_id;
+					// echo $lastPlayerId;
 				}
 				if ($result = $mysqli -> query("INSERT INTO scores (score, game_id) VALUES ($final_score, $id);")){
 					$lastScoreId = $mysqli-> insert_id;
+					// echo $lastScoreId;
 				}
-				if ($result = $mysqli -> query("INSERT INTO players_scores (player_id,score_id) VALUES ($lastPlayerId, $lastScoreId);")) {
+				if ($result = $mysqli -> query("INSERT INTO players_scores (player_id, score_id) VALUES ($lastPlayerId, $lastScoreId);")) {
+					// echo 'Success!';
 				}
 			}
 		}
@@ -93,7 +96,7 @@
 									<tr>
 										<td><?php echo $counter; ?></td>
 										<td><?php echo $row['username']; ?></td>
-										<td><?php printf("%.2f", $row['score']); ?> %</td>
+										<td><?php printf("%.2f", $row['score']); ?></td>
 									</tr>
 									<?php ++$counter;
 								}
@@ -130,6 +133,7 @@
 										score.</small>
 									<input type="hidden" name="id" value="<?php echo $id ?>">
 									<input type="hidden" name="title" value="<?php echo $title ?>">
+									<input type="hidden" name="startTime" value="<?php echo ($startTime = time()); ?>">
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -164,12 +168,12 @@
 		})
 	</script>
 
-	<!-- <?php 
-	echo 'Get';
-	pre_r($_GET);
-	echo 'Post';
-	pre_r($_POST);
-	?> -->
+	<?php 
+	// echo 'Get';
+	// pre_r($_GET);
+	// echo 'Post';
+	// pre_r($_POST);
+	?>
 </body>
 
 </html>

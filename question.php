@@ -23,8 +23,9 @@
 			$id = $_POST['id'];
 			$title = $_POST['title'];
 			$username = $_POST['username'];
-			$startTime = time(); 
+			$startTime = $_POST['startTime'];
 		}
+		$seed = time();
 	?>
 	<!-- Header -->
 	<?php include ("inc_header.html"); ?>
@@ -50,7 +51,6 @@
 					<form action="summary.php" method="POST">
 					<?php
 						$json_array = array();
-						$seed = time();
 						if ($result = $mysqli -> query("SELECT * FROM qanda WHERE game_id = $id ORDER BY RAND($seed);")) {
 							$limiter = $result -> num_rows;
 							$limiter = floor($limiter/2);
@@ -158,12 +158,12 @@
 
 	<script>var questions = <?php echo $questions; ?>;</script>
 	<script type="text/javascript" src="gameBehavior.js"></script>
-	<!-- <?php 
-	echo 'Get';
-	pre_r($_GET);
-	echo 'Post';
-	pre_r($_POST);
-	?> -->
+	<?php
+	// echo 'Get';
+	// pre_r($_GET);
+	// echo 'Post';
+	// pre_r($_POST);
+	?>
 </body>
 
 </html>
