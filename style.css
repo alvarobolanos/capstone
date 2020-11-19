@@ -36,3 +36,33 @@ footer a:hover {
 .modal-backdrop.show {
 	opacity: 0.87 !important;
 }
+
+form {
+	width: 100%;
+}
+
+.flex {
+	display: block;
+}
+.btn.btn-lg {
+	width: 100%;
+	margin: 2% 0;
+	border-radius: .3rem !important;
+}
+@media only screen and (min-width: 790px) {
+ .flex {
+	 display: flex;
+	 flex-flow: wrap;
+ }
+ .btn.btn-lg {
+	width: 48%;
+	display: block;
+	margin-right: 2%;
+ }
+}
+
+@media only screen and (min-width: 990px) {
+	.btn.btn-lg {
+		width: auto;
+	}
+}

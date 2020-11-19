@@ -59,7 +59,7 @@
 								<div id="q_<?php echo ($q_counter+1); ?>">
 									<h2>Question <?php echo ($q_counter+1) ?></h2>
 									<p class="text-muted"><?php echo $row["question"] ?></p>
-									<div class="btn-group btn-group-toggle form-group" role="group" data-toggle="buttons">
+									<div class="btn-group btn-group-toggle form-group flex" role="group" data-toggle="buttons">
 										<label class="btn btn-lg btn-outline-primary">
 											<input type="radio" name="answer_<?php echo($q_counter) ?>" value="<?php echo $row["answer_1"] ?>" autocomplete="off" required><?php echo $row["answer_1"] ?>
 										</label>
