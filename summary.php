@@ -84,7 +84,7 @@
 		<div class="container text-center">
 			
 			<h4>You scored <?php echo $score ?> correct answers out of <?php echo ($q_counter+1) ?>.</h4>
-			<h5 class="text-muted">You completed the game in: <?php echo($timeInterval>60 ? ($timeInterval/60 . ' Minutes and ' . ($timeInterval/60)%60 . ' Seconds.') : ($timeInterval%60 . ' Seconds.')); ?></h5>
+			<h5 class="text-muted">You completed the game in: <?php echo($timeInterval>60 ? (floor($timeInterval/60) . ' Minutes and ' . $timeInterval%60 . ' Seconds.') : ($timeInterval%60 . ' Seconds.')); ?></h5>
 			<h1>Final Score: <?php printf("%.2f", $final_score) ?></h1>
 			<p>Thank you for playing <?php echo $username ?>.</p>
 	
