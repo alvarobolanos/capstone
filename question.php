@@ -120,13 +120,13 @@
 					</div>
 					<div class="modal-body">
 						<div class="container text-center">
-							<p>Click the button below to start the game.<p>
+							<p>The timer has started.<p>
 							<p>Answer quickly to maximize your score.<p>
 							<p>You've got this!<p>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button id="startTimer" type="startTimer" class="btn btn-secondary" data-dismiss="modal">Start</button>
+						<button id="startTimer" type="startTimer" class="btn btn-secondary" data-dismiss="modal">Go</button>
 					</div>
 				</div>
 			</div>

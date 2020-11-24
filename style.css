@@ -44,11 +44,17 @@ form {
 .flex {
 	display: block;
 }
+
 .btn.btn-lg {
 	width: 100%;
 	margin: 2% 0;
 	border-radius: .3rem !important;
 }
+
+.justify-space-between {
+	justify-content: space-between;
+}
+
 @media only screen and (min-width: 790px) {
  .flex {
 	 display: flex;

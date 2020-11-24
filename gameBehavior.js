@@ -3,7 +3,7 @@
 			var highestQuestion = 1;
       // Function to hide all questions after they've been put into the page.
 			function hideAllQuestions(){};
-			// Function to display each question after hitting the submit button (currently no checks in place)
+			// Function to display each question after hitting the next button (currently no checks in place)
 			function displayOneQuestion(){};
 			//Function to display all data so the submit button will work lol.
 			function displayAll(){};
@@ -34,7 +34,7 @@
 					inputs[i].addEventListener("click", function(){
 						if(document.getElementsByClassName("btn btn-lg btn-outline-primary active") != null && document.getElementById("submit").style.display == 'none'){
 							document.getElementById("next").style.display = 'block';
-							console.log("displayed button");
+							highestQuestion = questionRotation;
 						}
 					});
 				}
@@ -114,13 +114,15 @@
 						document.getElementById("next").style.display = 'block';
 						console.log("display");
 					}
+
 					// If the highestQuestion is lower than the current, do not display the next button for the question hasn't been answered.
 					// Also update the highestQuestion to the current.
 					if(highestQuestion <= questionRotation){
 						highestQuestion = questionRotation;
 						document.getElementById("next").style.display = 'none';
-						console.log(highestQuestion);
+						console.log("highestQuestion = " + highestQuestion);
 						console.log("hide")
+						console.log("questionRotation = " + questionRotation);
 					}
 					questionRotation++;
 				};
