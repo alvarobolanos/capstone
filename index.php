@@ -49,7 +49,7 @@
 									<p class="card-text text-muted"><?php echo substr($row["description"], 0, 150); ?>...</p>
 									<form action="game.php" method="POST">
 										<input type="hidden" name="title" value="<?php echo $row["title"]; ?>">
-										<button class="btn btn-primary" type="submit" name="id" value="<?php echo $row["id"]; ?>" value>Play</button>
+										<button class="btn btn-primary btn-block" type="submit" name="id" value="<?php echo $row["id"]; ?>" value>Play</button>
 									</form>
 								</div>
 							</div>

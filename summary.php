@@ -93,7 +93,7 @@
 				<input type="hidden" name="title" value="<?php echo $title ?>">
 				<input type="hidden" name="username" value="<?php echo $username ?>">
 				<input type="hidden" name="final_score" value="<?php echo $final_score ?>">
-				<button type="submit" class="btn btn-success btn-lg">Save and Check Top Scores</button>
+				<button type="submit" class="btn btn-success">Save and Check Top Scores</button>
 			</form>
 		</div>
 		<hr/>
@@ -154,10 +154,10 @@
 	</script>
 
 	<?php
-	// echo 'Get';
-	// pre_r($_GET);
-	// echo 'Post';
-	// pre_r($_POST);
+	echo 'Get';
+	pre_r($_GET);
+	echo 'Post';
+	pre_r($_POST);
 	?>
 </body>
 

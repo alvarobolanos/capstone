@@ -55,6 +55,15 @@ form {
 	justify-content: space-between;
 }
 
+.btn-success {
+	width: 100%;
+	margin: 3% auto;
+}
+
+.btn {
+	font-size: 20px;
+}
+
 @media only screen and (min-width: 790px) {
  .flex {
 	 display: flex;
@@ -65,10 +74,13 @@ form {
 	display: block;
 	margin-right: 2%;
  }
+ .btn-success {
+	width: 40%;
+ }
 }
 
-@media only screen and (min-width: 990px) {
+@media only screen and (min-width: 1200px) {
 	.btn.btn-lg {
-		width: auto;
+		width: 23%;
 	}
 }

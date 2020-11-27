@@ -34,7 +34,6 @@
 	<div class="jumbotron text-center">
 		<h1><?php echo $title ?></h1>
 	</div>
-
 	<!-- Main -->
 	<main class="container">
 	<!-- Question and Answers Pane -->
@@ -91,13 +90,16 @@
 						</br>
 						<div class="row">
 							<div class="col">
-								<button id="previous" type="button" class="btn btn-primary" onclick="displayPrevious();">Previous Question</button>
+								<button id="previous" type="button" class="btn btn-primary btn-block" onclick="displayPrevious();">Previous Question</button>
 							</div>
  							<div class="col">
-								<button id="next" type="button" class="btn btn-primary" onclick="displayOneQuestion();">Next Question</button>
+								<button id="next" type="button" class="btn btn-primary btn-block" onclick="displayOneQuestion();">Next Question</button>
 							 </div>
-							<div class="col text-right">
-								<button id="submit" type="submit" class="btn btn-primary">Submit</button>
+						</div>
+
+						<div class="row">
+							<div class="col">
+								<button id="submit" type="submit" class="btn btn-success">Submit</button>
 							</div>
 						</div>
 					</form>
@@ -107,7 +109,7 @@
 			
 			
 		<!-- Go Back Home -->
-		<?php include ("inc_gobackhome.html"); ?>	
+		<?php include ("inc_gobackhome.html"); ?>
 		</section>
 
 		<!-- Rules Modal -->
@@ -126,7 +128,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button id="startTimer" type="startTimer" class="btn btn-secondary" data-dismiss="modal">Go</button>
+						<button id="startTimer" type="startTimer" class="btn btn-secondary btn-block" data-dismiss="modal">Go</button>
 					</div>
 				</div>
 			</div>
@@ -159,10 +161,10 @@
 	<script>var questions = <?php echo $questions; ?>;</script>
 	<script type="text/javascript" src="gameBehavior.js"></script>
 	<?php
-	// echo 'Get';
-	// pre_r($_GET);
-	// echo 'Post';
-	// pre_r($_POST);
+	echo 'Get';
+	pre_r($_GET);
+	echo 'Post';
+	pre_r($_POST);
 	?>
 </body>
 
