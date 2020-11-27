@@ -76,6 +76,9 @@
 			$timeInterval = $endTime - $startTime;
 			if ($timeInterval != 0) {
 				$final_score = 100 * $score * exp(-2*abs($timeInterval)/60);
+				if ($score >= 7) {
+					$final_score = $final_score + 20;
+				}
 			} else{
 				$final_score = 0;
 			}
