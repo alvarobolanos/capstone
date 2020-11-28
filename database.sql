@@ -57,7 +57,8 @@ CREATE TABLE `qanda` (
 
 INSERT 
 INTO capstone.games (title, description, image_url)
-VALUES ('World Geography', 'A trivia game about world geography in which you will test your knowledge about places, bodies of water and other interesting facts that everyone should know. If you do not know these, then you should have stayed in school kido.','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/OrteliusWorldMap.jpeg/2560px-OrteliusWorldMap.jpeg');
+VALUES ('World Geography', 'A trivia game about world geography in which you will test your knowledge about places, bodies of water and other interesting facts that everyone should know. If you do not know these, then you should have stayed in school kido.','https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/OrteliusWorldMap.jpeg/2560px-OrteliusWorldMap.jpeg'),
+('World Sports', 'A trivia game about world sports. No... really, not just the National Leagues. On your mark, get set... GO!', 'https://s2.qwant.com/thumbr/0x0/4/d/95ccbad1ebd8dc6448bda48852193cb916a09a9bc26301a17e395d853f0839/sports-cancun.jpg?u=https%3A%2F%2Fwww.discoverymundo.com%2Fblog%2Fwp-content%2Fuploads%2F2016%2F07%2Fsports-cancun.jpg&q=0&b=1&p=0&a=1');
 
 SELECT * FROM games;
 
@@ -82,7 +83,23 @@ VALUES ('What is the largest Island in the Caribbean?', 'Puerto Rico', 'La Hispa
 ('Which US state borders Lake Huron?','Michigan','Wisconsin','Ohio','Pennsylvania','Michigan',1),
 ('What was the most polluted country in 2019?','China','Bangladesh','India','USA','Bangladesh',1),
 ('What is the smallest country in Europe?','Monaco','San Marino','Andorra','Vatican City','Vatican City',1),
-('What is the most densely populated country in Africa in 2020?','Ethiopia','Egypt','DR Congo','Nigeria','Nigeria',1);
+('What is the most densely populated country in Africa in 2020?','Ethiopia','Egypt','DR Congo','Nigeria','Nigeria',1)
+('The club with the most european football champion league titles is:','Bayern Munchen','Milan FC','Real Madrid FC','Liverpool FC','Real Madrid FC',2),
+('The Formula 1 driver who has won the most Grand Prix in history is:','Lewis Hamilton','Michael Schumacher','Sebastian Vettel','Ayrton Senna','Lewis Hamilton',2),
+('The national team that has conquered the most Rugby Leage World Cup titles is:','Australia','New Zealand','Papua New Guinea','England','Australia',2),
+('The national team that has won the most Fifa World Cup Men titles is:','France','Argentina','Brazil','Germany','Brazil',2),
+('The national team that has won the most FIFA World Cup Women titles is:','France','USA','Denmakr','South Korea','USA',2),
+('In 2014 the men in the Brazilian lost the semifinal of the FIVB world cup. Which national team prevented their fourth consecutive title?','Cuba','Russia','Poland','Italy','Poland',2),
+('The NBA player with the most regular season points is:','Kobe Bryant','Michael Jordan','Kareem Abdul-Jabbar','Karl Malone','Kareem Abdul-Jabbar',2),
+('The record holder Quarterback for most consecutive wins during regular season is:','Peyton Manning','Tom Brady','Brett Favre','Joe Montana','Peyton Manning',2),
+('This Bill Masterton Memorial trophy is presented to the player who best exemplifies the qualities of perseverance, sportsmanship and dedication to:','Badmington','Bowling','Lacrosse','Hockey','Hockey',2),
+('Which of the following drivers did not win a total of 7 NASCAR Cup Series Championship','Richard Petty','Jeff Gordon','Jimmie Johnson','Dale Earnhardt','Jeff Gordon',2),
+('Which American has won more Grand Slam Titles','Helen Wills','Andre Agassi','Serena Williams','Pete Sampras','Serena Williams',2),
+('Which Formula 1 team has started more races?','Williams','McLaren','Ferrari','Lotus','Ferrari',2),
+('Which of these is not a real sport?','Hobbyhorsing','Shin Kicking','Chess Boxing','Tackle-Bok','Tackle-Bok',2),
+('Where is the 24 hours endurance race in the World Endurance Championship run?','Le Mans','Seebring','Spa-Frnacorchamps','Fuji','Le Mans',2),
+('The most wins record by a rider in Tour de France stages belongs to:','Mark Cavendish','Peter Sagan','Andre Gripel','Eddy Merckx','Eddy Merckx',2),
+('The most world records in swimming is held by:','Sarah Sjostrom','Caeleb Dressel','Michael Phelps','Kelsi Dahlia','Caeleb Dressel',2);
 
 
 -- Insert values into the players table
