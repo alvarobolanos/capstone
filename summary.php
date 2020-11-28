@@ -157,10 +157,10 @@
 	</script>
 
 	<?php
-	echo 'Get';
-	pre_r($_GET);
-	echo 'Post';
-	pre_r($_POST);
+	// echo 'Get';
+	// pre_r($_GET);
+	// echo 'Post';
+	// pre_r($_POST);
 	?>
 </body>
 

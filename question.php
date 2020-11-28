@@ -161,10 +161,10 @@
 	<script>var questions = <?php echo $questions; ?>;</script>
 	<script type="text/javascript" src="gameBehavior.js"></script>
 	<?php
-	echo 'Get';
-	pre_r($_GET);
-	echo 'Post';
-	pre_r($_POST);
+	// echo 'Get';
+	// pre_r($_GET);
+	// echo 'Post';
+	// pre_r($_POST);
 	?>
 </body>
 
